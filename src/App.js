@@ -19,7 +19,7 @@ function App() {
         <div className="hero-content">
           <div className="profile-image-container" data-aos="fade-up">
             <img 
-              src="/chirag_1.jpg" 
+              src="/chirag 1.jpg" 
               alt="Chirag Chandrashekar" 
               className="profile-image"
               loading="eager"
@@ -130,7 +130,7 @@ function App() {
       </section>
       
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" data-aos="fade-up" data-aos-delay="50">
         <div className="container">
           <p data-aos="fade-up">
             &copy; {new Date().getFullYear()} Chirag Chandrashekar. 
