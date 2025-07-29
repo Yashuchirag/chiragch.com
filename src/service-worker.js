@@ -2,6 +2,7 @@
 
 // This is the service worker with the Cache-first network
 
+// This variable will be replaced by workbox with the actual files during build
 const CACHE_NAME = 'portfolio-cache-v1';
 const urlsToCache = [
   '/',
@@ -14,6 +15,9 @@ const urlsToCache = [
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
 ];
 
+// This will be replaced by workbox with the actual manifest
+const manifest = self.__WB_MANIFEST || [];
+
 // Install a service worker
 self.addEventListener('install', (event) => {
   // Perform install steps
@@ -21,7 +25,9 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        // Add all URLs from the manifest and our additional URLs
+        const cacheUrls = [...urlsToCache, ...manifest.map(entry => entry.url)];
+        return cache.addAll(cacheUrls);
       })
   );
 });
