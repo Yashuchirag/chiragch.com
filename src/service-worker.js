@@ -10,7 +10,7 @@ const urlsToCache = [
   '/logo192.png',
   '/logo512.png',
   '/manifest.json',
-  '/chirag 1.jpg',
+  '/chirag_1.jpg',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
 ];
 

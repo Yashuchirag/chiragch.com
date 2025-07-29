@@ -19,7 +19,7 @@ function App() {
         <div className="hero-content">
           <div className="profile-image-container" data-aos="fade-up">
             <img 
-              src="/chirag 1.jpg" 
+              src="/chirag_1.jpg" 
               alt="Chirag Chandrashekar" 
               className="profile-image"
               loading="eager"
@@ -137,7 +137,7 @@ function App() {
             <span className="footer-availability">Available for full-time opportunities.</span>
           </p>
           <div className="footer-links" data-aos="fade-up" data-aos-delay="100">
-            <a href="#" className="footer-link">Back to top</a>
+            <a href="#home" className="footer-link">Back to top</a>
             <span className="footer-separator">•</span>
             <a href="mailto:contact@chiragch.com" className="footer-link">Email Me</a>
           </div>
