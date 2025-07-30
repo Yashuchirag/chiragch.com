@@ -65,6 +65,22 @@ function App() {
               </svg>
               <span>LinkedIn</span>
             </a>
+            <a 
+              href="https://docs.google.com/document/d/1BCGKpmJTWgK1LoKDfGIUiTC80RdlMV1P/edit?usp=drive_link&ouid=102801513290136905100&rtpof=true&sd=true" 
+              target="_blank" 
+              rel="noopener noreferrer nofollow"
+              className="social-link resume"
+              aria-label="View Resume"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                <path d="M14 2v6h6"/>
+                <path d="M16 13H8"/>
+                <path d="M16 17H8"/>
+                <path d="M10 9H8"/>
+              </svg>
+              <span>Resume</span>
+            </a>
           </div>
           
           {/* CTA Button */}
