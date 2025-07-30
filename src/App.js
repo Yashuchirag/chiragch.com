@@ -141,6 +141,23 @@ function App() {
                 <span className="skill-tag">Jest</span>
               </div>
             </div>
+            <div className="skill-category" data-aos="fade-up" data-aos-delay="300">
+              <h4>Business Skills</h4>
+              <div className="skill-tags">
+                <span className="skill-tag">Data Analysis</span>
+                <span className="skill-tag">Data Visualization</span>
+                <span className="skill-tag">Machine Learning</span>
+                <span className="skill-tag">Statistical Analysis</span>
+                <span className="skill-tag">Business Intelligence</span>
+                <span className="skill-tag">Predictive Analytics</span>
+                <span className="skill-tag">Data Science</span>
+                <span className="skill-tag">Data Engineering</span>
+                <span className="skill-tag">Data Warehousing</span>
+                <span className="skill-tag">Data Visualization</span>
+                <span className="skill-tag">Algorithm Design</span>
+                <span className="skill-tag">Data Mining</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
