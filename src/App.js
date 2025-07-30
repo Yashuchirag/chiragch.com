@@ -137,6 +137,7 @@ function App() {
                 <span className="skill-tag">Git & GitHub</span>
                 <span className="skill-tag">Docker</span>
                 <span className="skill-tag">AWS</span>
+                <span className="skill-tag">Heroku</span>
                 <span className="skill-tag">CI/CD</span>
                 <span className="skill-tag">Jest</span>
               </div>
@@ -156,6 +157,16 @@ function App() {
                 <span className="skill-tag">Data Visualization</span>
                 <span className="skill-tag">Algorithm Design</span>
                 <span className="skill-tag">Data Mining</span>
+              </div>
+            </div>
+            <div className="skill-category" data-aos="fade-up" data-aos-delay="300">
+              <h4>Frameworks and Tools</h4>
+              <div className="skill-tags">
+                <span className="skill-tag">ServiceNow</span>
+                <span className="skill-tag">HP ALM</span>
+                <span className="skill-tag">Jira</span>
+                <span className="skill-tag">Medidata Rave</span>
+                <span className="skill-tag">Visual Studio</span>
               </div>
             </div>
           </div>
