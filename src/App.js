@@ -25,7 +25,7 @@ const Hero = () => {
       setActiveTitle((prev) => (prev + 1) % titles.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [titles.length]);
 
   const scrollToAbout = (e) => {
     e.preventDefault();
