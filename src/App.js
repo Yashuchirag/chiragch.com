@@ -1,9 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+// Configure PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 function App() {
+  const [numPages, setNumPages] = useState(null);
+  const [showPdfPreview, setShowPdfPreview] = useState(false);
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
+  const togglePdfPreview = () => {
+    setShowPdfPreview(!showPdfPreview);
+  };
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -121,6 +137,72 @@ function App() {
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="experience" id="experience">
+        <div className="section-container">
+          <h2 className="section-title" data-aos="fade-up">Professional Experience</h2>
+          <div className="experience-grid">
+            <div className="experience-card" data-aos="fade-up" data-aos-delay="100">
+              <div className="experience-header">
+                <div className="experience-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Data Analyst</h3>
+                  <p className="company">Accenture</p>
+                  <p className="date">Oct 2019 – Jul 2022</p>
+                </div>
+              </div>
+              <div className="experience-details">
+                <p><strong>Key Responsibilities:</strong></p>
+                <ul>
+                  <li>Reduced data discrepancies by 15% over 14+months by designing and optimizing data pipelines and validation workflows using Medidata Rave, ensuring robust data quality checks.</li>
+                  <li>Developed and deployed scalable data processing solutions in Java 8, delivering two critical projects ahead of schedule, demonstrating expertise in object-oriented programming and ETL development.</li>
+                  <li>Implemented a micro-service to gather and test data from multiple external sources while ensuring data safety for clinical trial data.</li>
+                  <li>Increased test coverage by developing 280+ test cases using HP ALM test platform, achieving a 90% bug detection and resolution rate by leveraging automated test execution, rigorous validation strategies, and defect-tracking workflows.</li>
+                </ul>
+                
+                <p><strong>Achievements:</strong></p>
+                <ul>
+                  <li>Recipient of Accenture's 'Extra Mile Award' (FY21 Q1) for delivering exceptional outcomes with speed and agility through client collaboration — recognized in the Team category. 
+                    <span className="award-link" onClick={togglePdfPreview} style={{ cursor: 'pointer' }}>
+                      {showPdfPreview ? 'Hide Preview' : 'View Award Certificate'}
+                    </span>
+                  </li>
+                  {showPdfPreview && (
+                    <div className="pdf-preview-container" style={{ margin: '1rem 0', width: '100%', maxWidth: '600px' }}>
+                      <Document
+                        file="Chirag Chandrashekar.pdf"
+                        onLoadSuccess={onDocumentLoadSuccess}
+                        loading={<div>Loading PDF preview...</div>}
+                        error={<div>Error loading PDF. Please try again later.</div>}
+                      >
+                        <Page
+                          pageNumber={1}
+                          width={600}
+                          renderTextLayer={false}
+                          renderAnnotationLayer={false}
+                        />
+                      </Document>
+                      <p style={{ textAlign: 'center', marginTop: '0.5rem', fontSize: '0.9rem' }}>
+                        Page 1 of {numPages}
+                      </p>
+                    </div>
+                  )}
+                  <li>Mentored 3 junior analysts, improving team productivity by 20%.</li>
+                  <li>Implemented a new data quality framework that reduced errors in reporting by 35%</li>
+                </ul>
+                
+                <p><strong>Technologies:</strong> SQL, HP ALM, Java 8, ServiceNow, Rave Technologies, Medidata Rave</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -407,6 +407,175 @@ a:hover {
   font-weight: bold;
 }
 
+/* Award Link */
+.award-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 0.5rem;
+  transition: var(--transition);
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.award-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.award-link::after {
+  content: '→';
+  margin-left: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.award-link:hover::after {
+  transform: translateX(2px);
+}
+
+/* PDF Preview */
+.pdf-preview-container {
+  margin: 1.5rem 0;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: white;
+}
+
+.react-pdf__Document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.react-pdf__Page {
+  box-shadow: none;
+  margin: 0;
+}
+
+.react-pdf__Page__canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+.pdf-page-info {
+  text-align: center;
+  margin-top: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Experience Section */
+.experience {
+  padding: 6rem 0;
+  background-color: var(--background);
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.experience-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.experience-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.experience-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.25rem;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.experience-header h3 {
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem 0;
+  color: var(--text-color);
+}
+
+.experience-header .company {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.experience-header .date {
+  font-size: 0.9rem;
+  color: var(--light-text);
+  margin: 0;
+  font-weight: 500;
+}
+
+.experience-details {
+  padding-left: 0.5rem;
+}
+
+.experience-details p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.experience-details ul {
+  margin: 0.5rem 0 1.5rem 1.25rem;
+  padding: 0;
+}
+
+.experience-details li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.experience-details li:before {
+  content: '•';
+  color: var(--primary-color);
+  font-weight: bold;
+  position: absolute;
+  left: -1rem;
+}
+
+.experience-details strong {
+  color: var(--text-color);
+}
+
 /* Skills Section */
 .skills {
   padding: 80px 0;
