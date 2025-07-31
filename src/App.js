@@ -1,180 +1,385 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaFilePdf,
+  FaEnvelope,
+  FaPhone,
+  FaHome,
+  FaMapMarkerAlt,
+  FaExternalLinkAlt
+} from 'react-icons/fa';
+import { SiLeetcode, SiHackerrank } from 'react-icons/si';
 
-function App() {
+// Hero Component
+const Hero = () => {
+  const [activeTitle, setActiveTitle] = useState(0);
+  const titles = ['Full Stack Engineer', 'Problem Solver', 'Tech Enthusiast'];
+  const heroRef = useRef(null);
+
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      easing: 'ease-out-cubic'
-    });
+    const interval = setInterval(() => {
+      setActiveTitle((prev) => (prev + 1) % titles.length);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
+  const scrollToAbout = (e) => {
+    e.preventDefault();
+    document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="App">
-      {/* Hero Section */}
-      <section className="hero">
+    <section className="hero" id="home" ref={heroRef}>
+      <div className="hero-overlay"></div>
+      <div className="container">
         <div className="hero-content">
-          <div className="profile-image-container" data-aos="fade-up">
-            <img 
-              src="/chirag_1.jpg" 
-              alt="Chirag Chandrashekar" 
+          <div className="profile-image-container" data-aos="fade-right">
+            <img
+              src="/chirag_1.jpg"
+              alt="Chirag Chandrashekar"
               className="profile-image"
+              width="300"
+              height="300"
               loading="eager"
             />
           </div>
-          <h1 className="name" data-aos="fade-up" data-aos-delay="100">Chirag Chandrashekar</h1>
-          <h2 className="title" data-aos="fade-up" data-aos-delay="150">Fullstack Software Engineer</h2>
-          <p className="location" data-aos="fade-up" data-aos-delay="200">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{marginRight: '8px'}}>
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            San Jose, California
-          </p>
-          <p className="bio" data-aos="fade-up" data-aos-delay="250">
-            Results-driven Full Stack Developer with expertise in building scalable web applications. 
-            Passionate about creating efficient, user-friendly solutions using modern technologies. 
-            Currently seeking full-time opportunities to contribute to innovative projects.
-          </p>
-
-          {/* Social Links */}
-          <div className="social-links" data-aos="fade-up" data-aos-delay="300">
-            {/* GitHub */}
-            <a href="https://github.com/Yashuchirag" target="_blank" rel="noopener noreferrer nofollow" className="social-link github" aria-label="GitHub Profile">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              <span>GitHub</span>
-            </a>
-            {/* LinkedIn */}
-            <a href="https://www.linkedin.com/in/chirag-chandrashe-15b965103/" target="_blank" rel="noopener noreferrer nofollow" className="social-link linkedin" aria-label="LinkedIn Profile">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-            {/* Resume */}
-            <a href="https://docs.google.com/document/d/1BCGKpmJTWgK1LoKDfGIUiTC80RdlMV1P/edit?usp=drive_link&ouid=102801513290136905100&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer nofollow" className="social-link resume" aria-label="View Resume">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
-                <path d="M14 2v6h6"/>
-                <path d="M16 13H8"/>
-                <path d="M16 17H8"/>
-                <path d="M10 9H8"/>
-              </svg>
-              <span>Resume</span>
-            </a>
-          </div>
-
-          {/* CTA */}
-          <div className="cta-section" data-aos="fade-up" data-aos-delay="350">
-            <a href="mailto:contact@chiragch.com" className="cta-button" aria-label="Contact via Email">
-              <span>Get In Touch</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft: '8px', transition: 'transform 0.3s ease'}}>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
+          <div className="hero-text" data-aos="fade-left" data-aos-delay="200">
+            <p className="greeting">Hi, I'am</p>
+            <h1>Chirag Chandrashekar.</h1>
+            <h2 className="typewriter">{titles[activeTitle]}</h2>
+            <p className="hero-description">
+              I'm a passionate software engineer specializing in building (and occasionally designing) exceptional digital experiences.
+              Currently, I'm focused on creating impactful solutions at the intersection of technology and user experience.
+            </p>
+            <div className="cta-buttons">
+              <a
+                href="https://docs.google.com/document/d/1BCGKpmJTWgK1LoKDfGIUiTC80RdlMV1P/edit?usp=drive_link&ouid=102801513290136905100&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                aria-label="View Resume"
+              >
+                <FaFilePdf /> View Resume
+              </a>
+              <a
+                href="#contact"
+                className="btn btn-outline"
+                onClick={scrollToAbout}
+                aria-label="Contact Me"
+              >
+                Get In Touch
+              </a>
+            </div>
+            <div className="social-links">
+              <a href="https://github.com/Yashuchirag" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <FaGithub className="social-icon" />
+              </a>
+              <a href="https://www.linkedin.com/in/chirag-chandrashe-15b965103/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin className="social-icon" />
+              </a>
+              <a href="https://leetcode.com/u/YashuChirag/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
+                <SiLeetcode className="social-icon" />
+              </a>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+      <button className="scroll-down" onClick={scrollToAbout} aria-label="Scroll down to about section">
+        <div className="arrow-down"></div>
+      </button>
+    </section>
+  );
+};
 
-      {/* Education Section */}
-      <section className="education" id="education">
-        <div className="section-container">
-          <h2 className="section-title" data-aos="fade-up">Education</h2>
-          <div className="education-grid">
+// About Component
+const About = () => {
+  const skills = [
+    { category: 'Frontend', items: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3'] },
+    { category: 'Backend', items: ['Node.js', 'Express', 'Python', 'Java', 'RESTful APIs'] },
+    { category: 'Tools', items: ['Git', 'Docker', 'AWS', 'MongoDB', 'PostgreSQL'] },
+    { category: 'Other', items: ['Data Structures', 'Algorithms', 'System Design', 'CI/CD', 'Agile'] }
+  ];
 
-            <div className="education-card" data-aos="fade-up" data-aos-delay="100">
-              <div className="education-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                </svg>
-              </div>
-              <h3>Master of Science in Electrical Engineering (LINCD)</h3>
-              <p className="institution">University of Colorado Boulder</p>
-              <p className="date">Aug 2022 – May 2024</p>
-              <div className="education-details">
-                <p><strong>Specialization:</strong> Software Engineering</p>
-                <p><strong>Relevant Coursework:</strong> Software Engineering Fundamentals, Computer Vision, Linear Programming, Machine Learning, NLP, Data Science</p>
-                <p><strong>GPA:</strong> 3.8 / 4.0</p>
-              </div>
+  return (
+    <section id="about" className="section">
+      <div className="container">
+        <h2 className="section-title">
+          <span className="section-number"></span> About Me
+          <span className="section-line"></span>
+        </h2>
+        <div className="about-grid">
+          <div className="about-text" data-aos="fade-right">
+            <p>Hello! I'm Chirag, a passionate Full Stack Developer with a strong foundation in computer science and a love for creating beautiful, functional, and user-centered digital experiences.</p>
+            <p>I recently graduated with a Master's degree in Computer Science from the University of Colorado Boulder, where I honed my skills in software development, algorithms, and system design. My journey in tech started when I wrote my first "Hello World" program, and I've been hooked ever since.</p>
+            <p>Here are a few technologies I've been working with recently:</p>
+            <div className="tech-grid">
+              {[
+                'React', 'JavaScript', 'TypeScript', 'HTML5',
+                'CSS3', 'Node.js', 'Express', 'Python',
+                'Java', 'MongoDB', 'Docker', 'AWS'
+              ].map((tech, index) => (
+                <div key={index} className="tech-box" data-aos="fade-up" data-aos-delay={index * 50}>
+                  {tech}
+                </div>
+              ))}
             </div>
-
-            <div className="education-card" data-aos="fade-up" data-aos-delay="200">
-              <div className="education-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                </svg>
-              </div>
-              <h3>Bachelor of Engineering in Electronics and Communication</h3>
-              <p className="institution">BMS College of Engineering</p>
-              <p className="date">Aug 2015 – Jul 2019</p>
-              <div className="education-details">
-                <p><strong>Focus Area:</strong> Electronics & Communication Engineering</p>
-                <p><strong>Key Courses:</strong> Data Structures, Algorithms, Digital Electronics, Microprocessors, Communication Systems, Computer Networks, Microcontrollers, Embedded Systems, Signal Processing</p>
-                <p><strong>GPA:</strong> 3.6 / 4.0</p>
-              </div>
-            </div>
-
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+};
 
-      {/* Experience Section */}
-      <section className="experience" id="experience">
-        <div className="section-container">
-          <h2 className="section-title" data-aos="fade-up">Professional Experience</h2>
-          <div className="experience-grid">
-            <div className="experience-card" data-aos="fade-up" data-aos-delay="100">
+// Experience Component
+const Experience = () => {
+  const experiences = [
+    {
+      role: 'Data Analyst',
+      company: 'Accenture',
+      period: 'Oct 2019 - Jul 2022',
+      description: 'Designed and deployed scalable, high-quality data solutions for clinical trials using Java, Medidata Rave, and HP ALM, improving data integrity and accelerating project delivery.',
+      responsibilities: [
+        'Reduced data discrepancies by 15% over 14+months by designing and optimizing data pipelines and validation workflows using Medidata Rave, ensuring robust data quality checks.',
+        'Developed and deployed scalable data processing solutions in Java 8, delivering two critical projects ahead of schedule, demonstrating expertise in object-oriented programming and ETL development.',
+        'Implemented a micro-service to gather and test data from multiple external sources while ensuring data safety for clinical trial data.',
+        'Increased test coverage by developing 280+ test cases using HP ALM test platform, achieving a 90% bug detection and resolution rate by leveraging automated test execution, rigorous validation strategies, and defect-tracking workflows.'
+      ],
+      skills: ['HP ALM', 'Postman', 'Java', 'Agile'],
+      award: {
+        name: 'Extra Mile Award',
+        PDF: '/Chirag Chandrashekar.pdf'
+      }
+    },
+    {
+      role: 'Graduate Teaching Assistant',
+      company: 'University of Colorado Boulder',
+      period: 'Aug 2023 - Dec 2023',
+      description: 'Assisted in teaching Fundamentals of Algorithms course, conducted lab sessions, and mentored students.',
+      responsibilities: [
+        'Conducted weekly lab sessions and office hours for 50+ students',
+        'Graded assignments and provided constructive feedback',
+        'Assisted in developing course materials and assignments',
+        'Mentored students on best coding practices and problem-solving'
+      ],
+      skills: ['Python', 'Java', 'CSS', 'HTML','React', 'Git', 'Docker', 'Algorithms', 'Teaching', 'Mentoring']
+    }
+  ];
+
+  return (
+    <section id="experience" className="section">
+      <div className="container">
+        <h2 className="section-title">
+          <span className="section-number"></span> Work Experience
+          <span className="section-line"></span>
+        </h2>
+        <div className="experience-timeline">
+          {experiences.map((exp, index) => (
+            <div key={index} className="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
               <div className="experience-header">
-                <div className="experience-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3>Data Analyst</h3>
-                  <p className="company">Accenture</p>
-                  <p className="date">Oct 2019 – Jul 2022</p>
-                </div>
+                <h3>{exp.role} <span>@ {exp.company}</span></h3>
+                <span className="experience-period">{exp.period}</span>
               </div>
-              <div className="experience-details">
-                <p><strong>Key Responsibilities:</strong></p>
-                <ul>
-                  <li>Reduced data discrepancies by 15% over 14+months by designing and optimizing data pipelines and validation workflows using Medidata Rave, ensuring robust data quality checks.</li>
-                  <li>Developed and deployed scalable data processing solutions in Java 8, delivering two critical projects ahead of schedule, demonstrating expertise in object-oriented programming and ETL development.</li>
-                  <li>Implemented a micro-service to gather and test data from multiple external sources while ensuring data safety for clinical trial data.</li>
-                  <li>Increased test coverage by developing 280+ test cases using HP ALM test platform, achieving a 90% bug detection and resolution rate by leveraging automated test execution, rigorous validation strategies, and defect-tracking workflows.</li>
-                </ul>
-                
-                <p><strong>Achievements:</strong></p>
-                <ul>
-                  <li>Recipient of Accenture's 'Extra Mile Award' (FY21 Q1) for delivering exceptional outcomes with speed and agility through client collaboration — recognized in the Team category. 
-                    <a href="/Chirag Chandrashekar.pdf" target="_blank" rel="noopener noreferrer" className="award-link">
-                      View Award Certificate
-                    </a>
+              <p className="experience-description">{exp.description}</p>
+              <ul className="experience-responsibilities">
+                {exp.responsibilities.map((item, i) => (
+                  <li key={i}>
+                    <span className="bullet"></span>
+                    <span className="text">{item}</span>
                   </li>
-                  <li>Mentored 3 junior analysts, improving team productivity by 20%.</li>
-                  <li>Implemented a new data quality framework that reduced errors in reporting by 35%.</li>
-                </ul>
-                
-                <p><strong>Technologies:</strong> SQL, HP ALM, Java 8, ServiceNow, Rave Technologies, Medidata Rave</p>
+                ))}
+              </ul>
+              <div className="experience-skills">
+                {exp.skills.map((skill, i) => (
+                  <span key={i} className="skill-tag">{skill}</span>
+                ))}
               </div>
+              {exp.award && (
+                <div className="experience-award">
+                  Award:{" "}
+                  <a
+                    href="/Chirag Chandrashekar.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {exp.award.name}
+                  </a>
+                  <FaExternalLinkAlt className="award-icon" />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Pages
+const EducationPage = ({ onBack }) => (
+  <div className="page">
+    <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
+    <h1 className="page-title">Education</h1>
+    <div className="education-grid">
+      <div className="education-card" data-aos="fade-up">
+        <h3>University of Colorado Boulder</h3>
+        <p className="date">2022 - 2024</p>
+        <p>Master of Science in Electrical Engineering</p>
+        <p>GPA: 3.77/4.0</p>
+      </div>
+      <div className="education-card" data-aos="fade-up" data-aos-delay="100">
+        <h3>BMS College of Engineering</h3>
+        <p className="date">2015 - 2019</p>
+        <p>Bachelor's in Electronics and Communication Engineering</p>
+        <p>GPA: 3.5/4.0</p>
+      </div>
+    </div>
+  </div>
+);
+
+// Skills Page
+const SkillsPage = ({ onBack }) => (
+  <div className="page">
+    <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
+    <h1 className="page-title">Skills</h1>
+    <section className="skills">
+      <div className="container">
+        <h3>Technical Skills</h3>
+        <div className="skills-grid">
+          <div className="skill-category" data-aos="fade-up">
+            <h4>Frontend</h4>
+            <div className="skill-tags">
+              <span className="skill-tag">React</span>
+              <span className="skill-tag">JavaScript</span>
+              <span className="skill-tag">TypeScript</span>
+              <span className="skill-tag">HTML5</span>
+              <span className="skill-tag">CSS3</span>
+              <span className="skill-tag">Redux</span>
+              <span className="skill-tag">Vue.js</span>
+            </div>
+          </div>
+          <div className="skill-category" data-aos="fade-up" data-aos-delay="100">
+            <h4>Backend</h4>
+            <div className="skill-tags">
+              <span className="skill-tag">Node.js</span>
+              <span className="skill-tag">Express</span>
+              <span className="skill-tag">Python</span>
+              <span className="skill-tag">Java</span>
+              <span className="skill-tag">REST APIs</span>
+            </div>
+          </div>
+          <div className="skill-category" data-aos="fade-up" data-aos-delay="200">
+            <h4>Database & Tools</h4>
+            <div className="skill-tags">
+              <span className="skill-tag">MongoDB</span>
+              <span className="skill-tag">PostgreSQL</span>
+              <span className="skill-tag">Git</span>
+              <span className="skill-tag">Docker</span>
+              <span className="skill-tag">AWS</span>
+              <span className="skill-tag">CI/CD</span>
+            </div>
+          </div>
+          <div className="skill-category" data-aos="fade-up" data-aos-delay="300">
+            <h4>Business Skills</h4>
+            <div className="skill-tags">
+              <span className="skill-tag">Data Analysis</span>
+              <span className="skill-tag">Machine Learning</span>
+              <span className="skill-tag">Statistical Modeling</span>
+              <span className="skill-tag">Predictive Analytics</span>
+              <span className="skill-tag">Data Visualization</span>
+              <span className="skill-tag">Feature Engineering</span>
+              <span className="skill-tag">Computer Vision</span>
+              <span className="skill-tag">Natural Language Processing</span>
+              <span className="skill-tag">Deep Learning</span>
+              <span className="skill-tag">Data Mining</span>
+              <span className="skill-tag">Agile</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+  </div>
+);
 
-      {/* Skills and Footer (unchanged) */}
-      {/* Keep rest of the sections as they are */}
+// Contact Page
+const ContactPage = ({ onBack }) => (
+  <div className="page" id="contact">
+    <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
+    <h1 className="page-title">Contact Me</h1>
+    <div className="contact-content">
+      <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll get back to you as soon as possible!</p>
+      <div className="contact-info">
+        <div className="contact-item"><FaEnvelope /><a href="mailto:chiragchandrashekar@gmail.com">chiragchandrashekar@gmail.com</a></div>
+        <div className="contact-item"><FaPhone /><a href="tel:+17202057734">+1 (720) 205-7734</a></div>
+        <div className="contact-item"><FaMapMarkerAlt /><span>San Jose, California</span></div>
+      </div>
+      <div className="social-links">
+        <a href="https://github.com/Yashuchirag" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+        <a href="https://www.linkedin.com/in/chirag-chandrashe-15b965103/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+      </div>
+    </div>
+  </div>
+);
+
+// App
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false });
+  }, []);
+
+  useEffect(() => {
+    AOS.refresh();
+  }, [currentPage]);
+
+  return (
+    <div className="App">
+      <header className={`header ${isMenuOpen ? 'active' : ''}`}>
+        <div className="container">
+          <nav className="nav">
+            <div className="logo">
+              <a href="#home" onClick={() => setCurrentPage('home')} aria-label="Home">
+                <FaHome size={24} />
+              </a>
+            </div>
+            <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+              <li><a href="#about" onClick={() => setCurrentPage('home')}>About</a></li>
+              <li><a href="#experience" onClick={() => setCurrentPage('home')}>Experience</a></li>
+              <li><a href="#education" onClick={() => setCurrentPage('education')}>Education</a></li>
+              <li><a href="#skills" onClick={() => setCurrentPage('skills')}>Skills</a></li>
+              <li><a href="#contact" onClick={() => setCurrentPage('contact')} className="btn btn-primary">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        {currentPage === 'home' && (<><Hero /><About /><Experience /></>)}
+        {currentPage === 'education' && <EducationPage onBack={() => setCurrentPage('home')} />}
+        {currentPage === 'skills' && <SkillsPage onBack={() => setCurrentPage('home')} />}
+        {currentPage === 'contact' && <ContactPage onBack={() => setCurrentPage('home')} />}
+      </main>
+
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <p>Designed & Built by Chirag Chandrashekar</p>
+            <div className="social-links">
+              <a href="https://github.com/ChiragChandrashekar" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+              <a href="https://linkedin.com/in/chirag-chandrashekar" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+              <a href="mailto:chirag.chandrashekar@colorado.edu"><FaEnvelope /></a>
+            </div>
+            <p>&copy; {new Date().getFullYear()} Chirag Chandrashekar. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
