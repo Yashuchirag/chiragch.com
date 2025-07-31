@@ -1,25 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
-
-// Configure PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 function App() {
-  const [numPages, setNumPages] = useState(null);
-  const [showPdfPreview, setShowPdfPreview] = useState(false);
-
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
-
-  const togglePdfPreview = () => {
-    setShowPdfPreview(!showPdfPreview);
-  };
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -172,32 +156,12 @@ function App() {
                 <p><strong>Achievements:</strong></p>
                 <ul>
                   <li>Recipient of Accenture's 'Extra Mile Award' (FY21 Q1) for delivering exceptional outcomes with speed and agility through client collaboration — recognized in the Team category. 
-                    <span className="award-link" onClick={togglePdfPreview} style={{ cursor: 'pointer' }}>
-                      {showPdfPreview ? 'Hide Preview' : 'View Award Certificate'}
-                    </span>
+                    <a href="/Chirag Chandrashekar.pdf" target="_blank" rel="noopener noreferrer" className="award-link">
+                      View Award Certificate
+                    </a>
                   </li>
-                  {showPdfPreview && (
-                    <div className="pdf-preview-container" style={{ margin: '1rem 0', width: '100%', maxWidth: '600px' }}>
-                      <Document
-                        file="Chirag Chandrashekar.pdf"
-                        onLoadSuccess={onDocumentLoadSuccess}
-                        loading={<div>Loading PDF preview...</div>}
-                        error={<div>Error loading PDF. Please try again later.</div>}
-                      >
-                        <Page
-                          pageNumber={1}
-                          width={600}
-                          renderTextLayer={false}
-                          renderAnnotationLayer={false}
-                        />
-                      </Document>
-                      <p style={{ textAlign: 'center', marginTop: '0.5rem', fontSize: '0.9rem' }}>
-                        Page 1 of {numPages}
-                      </p>
-                    </div>
-                  )}
                   <li>Mentored 3 junior analysts, improving team productivity by 20%.</li>
-                  <li>Implemented a new data quality framework that reduced errors in reporting by 35%</li>
+                  <li>Implemented a new data quality framework that reduced errors in reporting by 35%.</li>
                 </ul>
                 
                 <p><strong>Technologies:</strong> SQL, HP ALM, Java 8, ServiceNow, Rave Technologies, Medidata Rave</p>
