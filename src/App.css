@@ -277,7 +277,6 @@ section {
 }
 
 .btn-primary {
-  background-color: var(--green);
   color: var(--dark-navy);
 }
 .btn-primary:hover {

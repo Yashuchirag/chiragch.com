@@ -12,7 +12,7 @@ import {
   FaMapMarkerAlt,
   FaExternalLinkAlt
 } from 'react-icons/fa';
-import { SiLeetcode, SiHackerrank } from 'react-icons/si';
+import { SiLeetcode } from 'react-icons/si';
 
 // Hero Component
 const Hero = () => {
@@ -60,7 +60,7 @@ const Hero = () => {
                 href="https://docs.google.com/document/d/1BCGKpmJTWgK1LoKDfGIUiTC80RdlMV1P/edit?usp=drive_link&ouid=102801513290136905100&rtpof=true&sd=true"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn btn-outline"
                 aria-label="View Resume"
               >
                 <FaFilePdf /> View Resume
@@ -97,13 +97,6 @@ const Hero = () => {
 
 // About Component
 const About = () => {
-  const skills = [
-    { category: 'Frontend', items: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3'] },
-    { category: 'Backend', items: ['Node.js', 'Express', 'Python', 'Java', 'RESTful APIs'] },
-    { category: 'Tools', items: ['Git', 'Docker', 'AWS', 'MongoDB', 'PostgreSQL'] },
-    { category: 'Other', items: ['Data Structures', 'Algorithms', 'System Design', 'CI/CD', 'Agile'] }
-  ];
-
   return (
     <section id="about" className="section">
       <div className="container">
@@ -219,90 +212,89 @@ const Experience = () => {
 };
 
 // Pages
-const EducationPage = ({ onBack }) => (
-  <div className="page">
-    <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
-    <h1 className="page-title">Education</h1>
-    <div className="education-grid">
-      <div className="education-card" data-aos="fade-up">
-        <h3>University of Colorado Boulder</h3>
-        <p className="date">2022 - 2024</p>
-        <p>Master of Science in Electrical Engineering</p>
-        <p>GPA: 3.77/4.0</p>
-      </div>
-      <div className="education-card" data-aos="fade-up" data-aos-delay="100">
-        <h3>BMS College of Engineering</h3>
-        <p className="date">2015 - 2019</p>
-        <p>Bachelor's in Electronics and Communication Engineering</p>
-        <p>GPA: 3.5/4.0</p>
-      </div>
+const educationData = [
+  {
+    school: 'University of Colorado Boulder(LINCD)',
+    date: '2022 - 2024',
+    degree: 'Master of Science in Electrical Engineering',
+    gpa: 'GPA: 3.77/4.0'
+  },
+  {
+    school: 'BMS College of Engineering',
+    date: '2015 - 2019',
+    degree: "Bachelor's in Electronics and Communication Engineering",
+    gpa: 'GPA: 3.5/4.0'
+  }
+];
+
+const EducationPage = ({ onBack }) => {
+  const educationList = educationData.map((edu, index) => (
+    <div key={index} className="education-card" data-aos="fade-up" data-aos-delay={index * 100}>
+      <h3>{edu.school}</h3>
+      <p className="date">{edu.date}</p>
+      <p>{edu.degree}</p>
+      <p>{edu.gpa}</p>
     </div>
-  </div>
-);
+  ));
+
+  return (
+    <div className="page">
+      <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
+      <h1 className="page-title">Education</h1>
+      <div className="education-grid">{educationList}</div>
+    </div>
+  );
+};
 
 // Skills Page
-const SkillsPage = ({ onBack }) => (
-  <div className="page">
-    <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
-    <h1 className="page-title">Skills</h1>
-    <section className="skills">
-      <div className="container">
-        <h3>Technical Skills</h3>
-        <div className="skills-grid">
-          <div className="skill-category" data-aos="fade-up">
-            <h4>Frontend</h4>
-            <div className="skill-tags">
-              <span className="skill-tag">React</span>
-              <span className="skill-tag">JavaScript</span>
-              <span className="skill-tag">TypeScript</span>
-              <span className="skill-tag">HTML5</span>
-              <span className="skill-tag">CSS3</span>
-              <span className="skill-tag">Redux</span>
-              <span className="skill-tag">Vue.js</span>
-            </div>
-          </div>
-          <div className="skill-category" data-aos="fade-up" data-aos-delay="100">
-            <h4>Backend</h4>
-            <div className="skill-tags">
-              <span className="skill-tag">Node.js</span>
-              <span className="skill-tag">Express</span>
-              <span className="skill-tag">Python</span>
-              <span className="skill-tag">Java</span>
-              <span className="skill-tag">REST APIs</span>
-            </div>
-          </div>
-          <div className="skill-category" data-aos="fade-up" data-aos-delay="200">
-            <h4>Database & Tools</h4>
-            <div className="skill-tags">
-              <span className="skill-tag">MongoDB</span>
-              <span className="skill-tag">PostgreSQL</span>
-              <span className="skill-tag">Git</span>
-              <span className="skill-tag">Docker</span>
-              <span className="skill-tag">AWS</span>
-              <span className="skill-tag">CI/CD</span>
-            </div>
-          </div>
-          <div className="skill-category" data-aos="fade-up" data-aos-delay="300">
-            <h4>Business Skills</h4>
-            <div className="skill-tags">
-              <span className="skill-tag">Data Analysis</span>
-              <span className="skill-tag">Machine Learning</span>
-              <span className="skill-tag">Statistical Modeling</span>
-              <span className="skill-tag">Predictive Analytics</span>
-              <span className="skill-tag">Data Visualization</span>
-              <span className="skill-tag">Feature Engineering</span>
-              <span className="skill-tag">Computer Vision</span>
-              <span className="skill-tag">Natural Language Processing</span>
-              <span className="skill-tag">Deep Learning</span>
-              <span className="skill-tag">Data Mining</span>
-              <span className="skill-tag">Agile</span>
-            </div>
-          </div>
-        </div>
+const skillsData = [
+  {
+    category: 'Frontend',
+    tags: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Redux', 'Vue.js']
+  },
+  {
+    category: 'Backend',
+    tags: ['Node.js', 'Express', 'Python', 'Java', 'REST APIs']
+  },
+  {
+    category: 'Database & Tools',
+    tags: ['MongoDB', 'PostgreSQL', 'Git', 'Docker', 'AWS', 'CI/CD']
+  },
+  {
+    category: 'Business Skills',
+    tags: [
+      'Data Analysis', 'Machine Learning', 'Statistical Modeling', 'Predictive Analytics',
+      'Data Visualization', 'Feature Engineering', 'Computer Vision',
+      'Natural Language Processing', 'Deep Learning', 'Data Mining', 'Agile'
+    ]
+  }
+];
+
+const SkillsPage = ({ onBack }) => {
+  const skillSections = skillsData.map((section, index) => (
+    <div key={index} className="skill-category" data-aos="fade-up" data-aos-delay={index * 100}>
+      <h4>{section.category}</h4>
+      <div className="skill-tags">
+        {section.tags.map((tag, i) => (
+          <span key={i} className="skill-tag">{tag}</span>
+        ))}
       </div>
-    </section>
-  </div>
-);
+    </div>
+  ));
+
+  return (
+    <div className="page">
+      <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
+      <h1 className="page-title">Skills</h1>
+      <section className="skills">
+        <div className="container">
+          <h3>Technical Skills</h3>
+          <div className="skills-grid">{skillSections}</div>
+        </div>
+      </section>
+    </div>
+  );
+};
 
 // Contact Page
 const ContactPage = ({ onBack }) => (
@@ -327,7 +319,7 @@ const ContactPage = ({ onBack }) => (
 // App
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false });
