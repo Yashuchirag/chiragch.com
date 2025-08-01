@@ -48,7 +48,7 @@ const Hero = () => {
             />
           </div>
           <div className="hero-text" data-aos="fade-left" data-aos-delay="200">
-            <p className="greeting">Hi, I'am</p>
+            <p className="greeting">Hi, I'm</p>
             <h1>Chirag Chandrashekar.</h1>
             <h2 className="typewriter">{titles[activeTitle]}</h2>
             <p className="hero-description">
