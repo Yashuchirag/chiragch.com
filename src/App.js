@@ -20,6 +20,7 @@ const Hero = () => {
   const titles = ['Full Stack Engineer', 'Problem Solver', 'Tech Enthusiast'];
   const heroRef = useRef(null);
 
+  // Typewriter effect
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTitle((prev) => (prev + 1) % titles.length);
@@ -27,6 +28,7 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [titles.length]);
 
+  // Affects to about section
   const scrollToAbout = (e) => {
     e.preventDefault();
     document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
@@ -111,9 +113,9 @@ const About = () => {
             <p>Here are a few technologies I've been working with recently:</p>
             <div className="tech-grid">
               {[
-                'React', 'JavaScript', 'TypeScript', 'HTML5',
-                'CSS3', 'Node.js', 'Express', 'Python',
-                'Java', 'MongoDB', 'Docker', 'AWS'
+                'React', 'JavaScript', 'TypeScript', 'HTML',
+                'CSS', 'Node.js', 'Express', 'Python',
+                'Java', 'PostgreSQL', 'Git', 'Docker'
               ].map((tech, index) => (
                 <div key={index} className="tech-box" data-aos="fade-up" data-aos-delay={index * 50}>
                   {tech}
@@ -165,15 +167,25 @@ const Experience = () => {
   return (
     <section id="experience" className="section">
       <div className="container">
-        <h2 className="section-title">
-          <span className="section-number"></span> Work Experience
-          <span className="section-line"></span>
-        </h2>
+        <h1 className="page-title" data-aos="fade-right">Work Experience</h1>
         <div className="experience-timeline">
           {experiences.map((exp, index) => (
             <div key={index} className="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
               <div className="experience-header">
                 <h3>{exp.role} <span>@ {exp.company}</span></h3>
+                {exp.award && (
+                  <div className="experience-award">
+                    Award:{" "}
+                    <a
+                      href="/Chirag Chandrashekar.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {exp.award.name}
+                    </a>
+                    <FaExternalLinkAlt className="award-icon" />
+                  </div>
+                )}
                 <span className="experience-period">{exp.period}</span>
               </div>
               <p className="experience-description">{exp.description}</p>
@@ -190,19 +202,6 @@ const Experience = () => {
                   <span key={i} className="skill-tag">{skill}</span>
                 ))}
               </div>
-              {exp.award && (
-                <div className="experience-award">
-                  Award:{" "}
-                  <a
-                    href="/Chirag Chandrashekar.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {exp.award.name}
-                  </a>
-                  <FaExternalLinkAlt className="award-icon" />
-                </div>
-              )}
             </div>
           ))}
         </div>
@@ -227,9 +226,14 @@ const educationData = [
   }
 ];
 
-const EducationPage = ({ onBack }) => {
+const EducationPage = () => {
   const educationList = educationData.map((edu, index) => (
-    <div key={index} className="education-card" data-aos="fade-up" data-aos-delay={index * 100}>
+    <div
+      key={index}
+      className="education-card"
+      data-aos="fade-up"
+      data-aos-delay={index * 100 + 200} // start after heading
+    >
       <h3>{edu.school}</h3>
       <p className="date">{edu.date}</p>
       <p>{edu.degree}</p>
@@ -238,11 +242,12 @@ const EducationPage = ({ onBack }) => {
   ));
 
   return (
-    <div className="page">
-      <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
-      <h1 className="page-title">Education</h1>
-      <div className="education-grid">{educationList}</div>
-    </div>
+    <section className="page" id="education">
+      <h1 className="page-title" data-aos="fade-right">Education</h1>
+      <div className="education-grid" data-aos="fade-up" data-aos-delay="100">
+        {educationList}
+      </div>
+    </section>
   );
 };
 
@@ -262,17 +267,21 @@ const skillsData = [
   },
   {
     category: 'Business Skills',
-    tags: [
-      'Data Analysis', 'Machine Learning', 'Statistical Modeling', 'Predictive Analytics',
+    tags: ['Data Analysis', 'Machine Learning', 'Statistical Modeling', 'Predictive Analytics',
       'Data Visualization', 'Feature Engineering', 'Computer Vision',
       'Natural Language Processing', 'Deep Learning', 'Data Mining', 'Agile'
     ]
   }
 ];
 
-const SkillsPage = ({ onBack }) => {
+const SkillsPage = () => {
   const skillSections = skillsData.map((section, index) => (
-    <div key={index} className="skill-category" data-aos="fade-up" data-aos-delay={index * 100}>
+    <div
+      key={index}
+      className="skill-category"
+      data-aos="fade-up"
+      data-aos-delay={index * 100 + 200} // extra delay after heading
+    >
       <h4>{section.category}</h4>
       <div className="skill-tags">
         {section.tags.map((tag, i) => (
@@ -283,37 +292,43 @@ const SkillsPage = ({ onBack }) => {
   ));
 
   return (
-    <div className="page">
-      <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
-      <h1 className="page-title">Skills</h1>
-      <section className="skills">
-        <div className="container">
-          <h3>Technical Skills</h3>
-          <div className="skills-grid">{skillSections}</div>
-        </div>
-      </section>
-    </div>
+    <section className="page" id="skills">
+      <h1 className="page-title" data-aos="fade-right">Skills</h1>
+          <div className="skills-grid">
+            {skillSections}
+          </div>
+    </section>
   );
 };
 
 // Contact Page
-const ContactPage = ({ onBack }) => (
-  <div className="page" id="contact">
-    <button onClick={onBack} className="back-to-toc">← Back to Contents</button>
-    <h1 className="page-title">Contact Me</h1>
-    <div className="contact-content">
+const ContactPage = () => (
+  <section className="page" id="contact">
+    <h1 className="page-title" data-aos="fade-right">Contact Me</h1>
+    <div className="contact-content" data-aos="fade-up" data-aos-delay="100">
       <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll get back to you as soon as possible!</p>
+      
       <div className="contact-info">
-        <div className="contact-item"><FaEnvelope /><a href="mailto:chiragchandrashekar@gmail.com">chiragchandrashekar@gmail.com</a></div>
-        <div className="contact-item"><FaPhone /><a href="tel:+17202057734">+1 (720) 205-7734</a></div>
-        <div className="contact-item"><FaMapMarkerAlt /><span>San Jose, California</span></div>
+        <div className="contact-item" data-aos="fade-up" data-aos-delay="200">
+          <FaEnvelope />
+          <a href="mailto:chiragchandrashekar@gmail.com">chiragchandrashekar@gmail.com</a>
+        </div>
+        <div className="contact-item" data-aos="fade-up" data-aos-delay="250">
+          <FaPhone />
+          <a href="tel:+17202057734">+1 (720) 205-7734</a>
+        </div>
+        <div className="contact-item" data-aos="fade-up" data-aos-delay="300">
+          <FaMapMarkerAlt />
+          <span>San Jose, California</span>
+        </div>
       </div>
-      <div className="social-links">
+
+      <div className="social-links" data-aos="fade-up" data-aos-delay="400">
         <a href="https://github.com/Yashuchirag" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
         <a href="https://www.linkedin.com/in/chirag-chandrashe-15b965103/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
       </div>
     </div>
-  </div>
+  </section>
 );
 
 // App
@@ -351,7 +366,7 @@ const App = () => {
       </header>
 
       <main>
-        {currentPage === 'home' && (<><Hero /><About /><Experience /></>)}
+        {currentPage === 'home' && (<><Hero /><About /><Experience /><EducationPage /><SkillsPage /><ContactPage /></>)}
         {currentPage === 'education' && <EducationPage onBack={() => setCurrentPage('home')} />}
         {currentPage === 'skills' && <SkillsPage onBack={() => setCurrentPage('home')} />}
         {currentPage === 'contact' && <ContactPage onBack={() => setCurrentPage('home')} />}
