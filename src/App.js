@@ -66,11 +66,12 @@ const Hero = () => {
                 <FaFilePdf /> View Resume
               </a>
               <a
-                href="#contact"
+                href="mailto:chirag.chandrashekar@colorado.edu"
                 className="btn btn-outline"
-                onClick={scrollToAbout}
-                aria-label="Contact Me"
+                onClick={() => window.location.href = "mailto:chirag.chandrashekar@colorado.edu"}
+                aria-label="Get In Touch"
               >
+                <FaEnvelope />
                 Get In Touch
               </a>
             </div>
