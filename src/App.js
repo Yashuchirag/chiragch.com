@@ -71,8 +71,7 @@ const Hero = () => {
                 onClick={() => window.location.href = "mailto:chirag.chandrashekar@colorado.edu"}
                 aria-label="Get In Touch"
               >
-                <FaEnvelope />
-                Get In Touch
+                <FaEnvelope /> Get In Touch
               </a>
             </div>
             <div className="social-links">
