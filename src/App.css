@@ -51,6 +51,9 @@ h2 {
 p {
   margin-bottom: 1rem;
   font-size: 1.05rem;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
   color: var(--light-slate);
 }
 
@@ -362,6 +365,15 @@ section {
 }
 .education-card p {
   font-size: 1rem;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  margin-bottom: 0.8rem;
+}
+
+.education-card .date {
+  text-align: left !important;
+  margin-bottom: 0.5rem !important;
 }
 
 /* Skills */
@@ -422,20 +434,166 @@ section {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Experience Item */
-.experience-item {
-  margin-bottom: 60px; /* Increase spacing between blocks */
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* optional visual divider */
+/* Experience & Projects Section */
+.experience-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.experience-item:last-child {
-  border-bottom: none;
+.experience-item {
+  background: var(--light-navy);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  transition: var(--transition);
+  border-left: 2px solid var(--green);
+}
+
+.experience-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -15px var(--green-tint);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.experience-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--lightest-slate);
+}
+
+.experience-header h3 span {
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+}
+
+.experience-period {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--light-slate);
+  white-space: nowrap;
+}
+
+.experience-description {
+  margin-bottom: 1.5rem;
+  color: var(--light-slate);
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.experience-responsibilities {
+  margin-bottom: 1.5rem;
+  list-style: none;
+}
+
+.experience-responsibilities li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--light-slate);
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.experience-responsibilities .bullet {
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  background-color: var(--green);
+  border-radius: 50%;
 }
 
 .experience-skills {
-  margin-top: 1rem; /* or use 16px / 20px as preferred */
-  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--green);
+  background-color: var(--green-tint);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+}
+
+.experience-award {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--light-slate);
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.experience-award a {
+  color: var(--green);
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+}
+
+.experience-award a:hover {
+  color: var(--white);
+}
+
+.award-icon {
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
+}
+
+/* Project Link */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  color: var(--green);
+  text-decoration: none;
+  transition: var(--transition);
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.project-link:hover {
+  color: var(--white);
+  background-color: var(--green-tint);
+}
+
+.link-icon {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .experience-period {
+    margin-top: 0.5rem;
+  }
 }
 
 /* Optional grid layout inside a category */

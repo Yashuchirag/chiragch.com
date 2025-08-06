@@ -129,6 +129,106 @@ const About = () => {
   );
 };
 
+// Projects Component
+const Projects = () => {
+  const projects = [
+    {
+      title: 'Volunteer Management System',
+      company: 'University of Colorado Boulder',
+      period: 'Jan 2024 - May 2024',
+      description: 'Developed a Docker-containerized full-stack application optimizing volunteer management through automated data collection, secure authentication, scalable SQL databases, and real-time analytics.',
+      responsibilities: [
+        'Engineered a full-stack web application to optimize volunteer event management, integrating Docker for containerization and automating data collection from multiple online sources to prevent overbooking and enhance scheduling efficiency.',
+        'Developed a secure user authentication system, event browsing functionality, and a scalable SQL database architecture, leveraging Docker containers to manage and analyze large datasets, enabling real-time insights and statistical reporting for data-driven decision-making.',
+        'Designed and implemented a data analyzer module using Python and SQL, generating automated reports and interactive visualizations to provide actionable intelligence for volunteer activity management and event coordination.'
+      ],
+      skills: ['React', 'CSS', 'JavaScript', 'PWA', 'Docker', 'Python', 'SQL', 'Heroku', 'PostgreSQL'],
+      link: 'https://github.com/Yashuchirag/Volunteer-Management'
+    },
+    {
+      title: 'Team Pressing Project: Premier League Analysis',
+      company: 'University of Colorado Boulder',
+      period: 'Jan 2023 - April 2023',
+      description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
+      responsibilities: [
+        'Performed exploratory data and feature analysis on Premier League team performance, identifying low shot conversion rates for Manchester United and Wolves due to center-forward absences, using statistical trend analysis and game performance metrics.',
+        'Designed and implemented advanced data visualization strategies using Matplotlib and Seaborn, uncovering key performance patterns through heatmaps, scatter plots, and time-series analysis to drive actionable insights.',
+        'Developed and evaluated 12 predictive models leveraging PCA for dimensionality reduction, with ElasticNet Regressor excelling in injury prediction and Linear Regression accurately forecasting goals per game and optimizing model interpretability and performance.'
+      ],
+      skills: ['Python', 'Machine Learning', 'Data Analysis', 'Data Visualization', 'PCA', 'ElasticNet Regressor', 'Linear Regression', 'Matplotlib', 'Seaborn'],
+      link: 'https://github.com/Yashuchirag/team_pressing_project'
+    },
+    {
+      title: 'Glasso Algorithm Project',
+      company: 'University of Colorado Boulder',
+      period: 'Jan 2024 - April 2024',
+      description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
+      responsibilities: [
+        'Developed and implemented machine learning solutions using the Graphical Lasso (GLASSO) algorithm to analyze large Gaussian graphical models in high-dimensional datasets, enhancing the interpretability of complex data relationships.',
+        'Estimated sparse precision matrices to improve the accuracy of predictions, anomaly detection, and scenario simulations, while conducting in-depth analysis of marginal and conditional independence within graphs.',
+        'Applied these techniques to real-world data, including gene expression datasets, improving predictive modeling and enabling data-driven decision-making in large-scale data science applications.'
+      ],
+      skills: ['Python', 'Machine Learning', 'Data Analysis', 'Data Visualization', 'PCA', 'GLASSO', 'Linear Regression', 'Matplotlib', 'Seaborn'],
+      link: ''
+    },
+    {
+      title: 'Forest Cover-Type Prediction',
+      company: 'University of Colorado Boulder',
+      period: 'Jan 2023 - April 2023',
+      description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
+      responsibilities: [
+        'Developed high-accuracy forest cover-type prediction models using logistic regression, neural networks, PCA, and bagging techniques, achieving 96.85% test accuracy by optimizing model performance through feature scaling, outlier removal, and preprocessing of 580,000+ samples.',
+        'Performed sensitivity analysis using confusion matrices and correlation heatmaps, evaluating model robustness and identifying key feature dependencies to refine predictive accuracy.',
+        'Enhanced model generalization through hyperparameter tuning and advanced feature engineering, leveraging grid search, cross-validation, and dimensionality reduction to improve classification performance and scalability.'
+      ],
+      skills: ['Python', 'Machine Learning', 'Data Analysis', 'Data Visualization', 'PCA', 'GLASSO', 'Linear Regression', 'Matplotlib', 'Seaborn'],
+      link: 'https://github.com/Yashuchirag/CoverType'
+    }
+  ];
+
+  return (
+    <section id="projects" className="section">
+      <div className="container">
+        <h1 className="page-title" data-aos="fade-right">Projects</h1>
+        <div className="experience-timeline">
+          {projects.map((project, index) => (
+            <div key={index} className="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
+              <div className="experience-header">
+                <h3>{project.title} <span>@ {project.company}</span></h3>
+                <span className="experience-period">{project.period}</span>
+              </div>
+              <p className="experience-description">{project.description}</p>
+              <ul className="experience-responsibilities">
+                {project.responsibilities.map((item, i) => (
+                  <li key={i}>
+                    <span className="bullet"></span>
+                    <span className="text">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="experience-skills">
+                {project.skills.map((skill, i) => (
+                  <span key={i} className="skill-tag">{skill}</span>
+                ))}
+              </div>
+              {project.link && (
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="project-link"
+                >
+                  View Project <FaExternalLinkAlt className="link-icon" />
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Experience Component
 const Experience = () => {
   const experiences = [
@@ -143,7 +243,7 @@ const Experience = () => {
         'Implemented a micro-service to gather and test data from multiple external sources while ensuring data safety for clinical trial data.',
         'Increased test coverage by developing 280+ test cases using HP ALM test platform, achieving a 90% bug detection and resolution rate by leveraging automated test execution, rigorous validation strategies, and defect-tracking workflows.'
       ],
-      skills: ['HP ALM', 'Postman', 'Java', 'Agile'],
+      skills: ['HP ALM', 'Postman', 'Java', 'Agile', 'Medidata Rave'],
       award: {
         name: 'Extra Mile Award',
         PDF: '/Chirag Chandrashekar.pdf'
@@ -357,6 +457,7 @@ const App = () => {
             <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
               <li><a href="#about" onClick={() => setCurrentPage('home')}>About</a></li>
               <li><a href="#experience" onClick={() => setCurrentPage('home')}>Experience</a></li>
+              <li><a href="#projects" onClick={() => setCurrentPage('home')}>Projects</a></li>
               <li><a href="#education" onClick={() => setCurrentPage('education')}>Education</a></li>
               <li><a href="#skills" onClick={() => setCurrentPage('skills')}>Skills</a></li>
               <li><a href="#contact" onClick={() => setCurrentPage('contact')} className="btn btn-primary">Contact</a></li>
@@ -366,7 +467,7 @@ const App = () => {
       </header>
 
       <main>
-        {currentPage === 'home' && (<><Hero /><About /><Experience /><EducationPage /><SkillsPage /><ContactPage /></>)}
+        {currentPage === 'home' && (<><Hero /><About /><Experience /><Projects /><EducationPage /><SkillsPage /><ContactPage /></>)}
         {currentPage === 'education' && <EducationPage onBack={() => setCurrentPage('home')} />}
         {currentPage === 'skills' && <SkillsPage onBack={() => setCurrentPage('home')} />}
         {currentPage === 'contact' && <ContactPage onBack={() => setCurrentPage('home')} />}
@@ -375,13 +476,13 @@ const App = () => {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <p>Designed & Built by Chirag Chandrashekar</p>
+            <q>Designed & Built by Chirag Chandrashekar</q>
             <div className="social-links">
               <a href="https://github.com/ChiragChandrashekar" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
               <a href="https://linkedin.com/in/chirag-chandrashekar" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
               <a href="mailto:chirag.chandrashekar@colorado.edu"><FaEnvelope /></a>
             </div>
-            <p>&copy; {new Date().getFullYear()} Chirag Chandrashekar. All rights reserved.</p>
+            <q>&copy; {new Date().getFullYear()} Chirag Chandrashekar. All rights reserved.</q>
           </div>
         </div>
       </footer>
