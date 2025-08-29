@@ -133,6 +133,22 @@ const About = () => {
 const Projects = () => {
   const projects = [
     {
+      title: 'Informative AI App',
+      company: 'Personal Project / Chirag Chandrashekar',
+      period: 'July 2025 - Present',
+      description: 'Built a modern, production-ready web application using Next.js 14 and React 18 that provides AI-powered information and interactive chat features with a focus on responsive design, accessibility, and developer ergonomics.',
+      responsibilities: [
+      'Architected and implemented a Next.js 14 + React 18 frontend with concurrent rendering, fast refresh, and an optimized production build pipeline to ensure low-latency AI interactions and smooth UX across devices.',
+      'Designed and developed a responsive UI with dark/light themes, accessibility considerations, and a clean modern aesthetic; implemented UI features including file/image uploads, markdown rendering (including tables), and keyboard shortcuts (Enter to submit, Shift+Enter for newline).',
+      'Built a model-selection UX with disabled/greyed-out states for unavailable models, clear selection indicators, and client-side enforcement of prompt character limits to improve reliability and guardrails for user input.',
+      'Implemented multiple chat history support with controls to start new chats, persist conversations, and render message histories with proper markdown and media handling for an organized user experience.',
+      'Integrated backend API routes and state management for streaming AI responses, efficient file handling, and scalable session management while ensuring secure handling of user data and environment secrets.',
+      'Added developer-focused improvements such as Fast Refresh, clear project scripts (dev/build/prod), and documentation to streamline local development and deployment workflows.'
+      ],
+      skills: ['Next.js 14', 'React 18', 'JavaScript', 'Node.js', 'CSS', 'Responsive Design', 'Markdown', 'PWA', 'File Upload', 'Accessibility', 'Vercel/Netlify'],
+      link: 'https://github.com/Yashuchirag/InformativeAIApp'
+    },
+    {
       title: 'Volunteer Management System',
       company: 'University of Colorado Boulder',
       period: 'Jan 2024 - May 2024',

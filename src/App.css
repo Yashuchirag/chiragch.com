@@ -56,6 +56,11 @@ p {
   hyphens: auto;
   color: var(--light-slate);
 }
+q {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  color: var(--light-slate);
+}
 
 a {
   color: var(--green);
