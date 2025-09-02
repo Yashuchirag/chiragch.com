@@ -59,7 +59,7 @@ const Hero = () => {
             </p>
             <div className="cta-buttons">
               <a
-                href="/Chirag_resume.pdf"
+                href="/Chirag_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"
