@@ -262,7 +262,7 @@ const Experience = () => {
       skills: ['HP ALM', 'Postman', 'Java', 'Agile', 'Medidata Rave'],
       award: {
         name: 'Extra Mile Award',
-        PDF: '/Chirag Chandrashekar.pdf'
+        PDF: '/Chirag_Chandrashekar.pdf'
       }
     },
     {
@@ -293,7 +293,7 @@ const Experience = () => {
                   <div className="experience-award">
                     Award:{" "}
                     <a
-                      href="/Chirag Chandrashekar.pdf"
+                      href="/Chirag_Chandrashekar.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
