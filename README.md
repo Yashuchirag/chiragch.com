@@ -35,9 +35,6 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 - `ContactPage` → Direct contact information and social icons.
 - `App.js` → Main entry point with navigation and routing between sections.
 
-## 📸 Screenshots
-
-> *(Add screenshots of the Hero, About, Projects, etc. once deployed for better presentation)*
 
 ## Available Scripts
 
