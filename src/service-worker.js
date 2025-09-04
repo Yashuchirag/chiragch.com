@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 // This is the service worker with the Cache-first network
 
 // This variable will be replaced by workbox with the actual files during build
