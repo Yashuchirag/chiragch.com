@@ -371,7 +371,7 @@ const EducationPage = () => {
 const skillsData = [
   {
     category: 'Frontend',
-    tags: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Redux', 'Vue.js']
+    tags: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Next.js', 'Vue.js']
   },
   {
     category: 'Backend',
