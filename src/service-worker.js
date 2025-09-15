@@ -14,7 +14,7 @@ const urlsToCache = [
 const manifest = self.__WB_MANIFEST || [];
 
 // Install a service worker
-self.addEventListener('install', (event) => {
+this.addEventListener('install', (event) => {
   // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -28,7 +28,7 @@ self.addEventListener('install', (event) => {
 });
 
 // Cache and return requests
-self.addEventListener('fetch', (event) => {
+this.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -59,7 +59,7 @@ self.addEventListener('fetch', (event) => {
 });
 
 // Update a service worker
-self.addEventListener('activate', (event) => {
+this.addEventListener('activate', (event) => {
   const cacheAllowlist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
