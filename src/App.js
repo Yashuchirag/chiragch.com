@@ -154,11 +154,11 @@ const Projects = () => {
       period: 'Jan 2024 - May 2024',
       description: 'Developed a Docker-containerized full-stack application optimizing volunteer management through automated data collection, secure authentication, scalable SQL databases, and real-time analytics.',
       responsibilities: [
-        'Engineered a full-stack web application to optimize volunteer event management, integrating Docker for containerization and automating data collection from multiple online sources to prevent overbooking and enhance scheduling efficiency.',
-        'Developed a secure user authentication system, event browsing functionality, and a scalable SQL database architecture, leveraging Docker containers to manage and analyze large datasets, enabling real-time insights and statistical reporting for data-driven decision-making.',
-        'Designed and implemented a data analyzer module using Python and SQL, generating automated reports and interactive visualizations to provide actionable intelligence for volunteer activity management and event coordination.'
+        'Built a full-stack web application using React, Flask, and PostgreSQL with user authentication, event registration, and real-time participation tracking. Deployed on Heroku and containerized with Docker for consistent development and deployment environments.',
+        'Automated web scraping of volunteer events using Python and BeautifulSoup every four hours, ensuring accurate, up-to-date scheduling and improved operational efficiency.',
+        'Designed a SQL-based data analysis pipeline to evaluate volunteer participation and event trends, optimize database operations, and support data-driven strategic planning.'
       ],
-      skills: ['React', 'CSS', 'JavaScript', 'PWA', 'Docker', 'Python', 'SQL', 'Heroku', 'PostgreSQL'],
+      skills: ['React', 'Flask', 'PostgreSQL', 'Heroku', 'Python', 'BeautifulSoup', 'SQL', 'CORS', 'Docker'],
       link: 'https://github.com/Yashuchirag/Volunteer-Management'
     },
     {
@@ -167,11 +167,11 @@ const Projects = () => {
       period: 'Jan 2023 - April 2023',
       description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
       responsibilities: [
-        'Performed exploratory data and feature analysis on Premier League team performance, identifying low shot conversion rates for Manchester United and Wolves due to center-forward absences, using statistical trend analysis and game performance metrics.',
-        'Designed and implemented advanced data visualization strategies using Matplotlib and Seaborn, uncovering key performance patterns through heatmaps, scatter plots, and time-series analysis to drive actionable insights.',
-        'Developed and evaluated 12 predictive models leveraging PCA for dimensionality reduction, with ElasticNet Regressor excelling in injury prediction and Linear Regression accurately forecasting goals per game and optimizing model interpretability and performance.'
+        'Analyzed soccer team pressing metrics with Python and Pandas, revealing patterns in defensive intensity and ball recovery strategies through advanced statistics.',
+        'Created interactive visualizations using Matplotlib, Seaborn, and Plotly, including heatmaps and pressure-zone maps to communicate team and player performance insights.',
+        'Developed custom metrics like Pressing Intensity (PPDA) and predictive models using scikit-learn and PCA to assess team effectiveness in match-event data.'
       ],
-      skills: ['Python', 'Machine Learning', 'Data Analysis', 'Data Visualization', 'PCA', 'ElasticNet Regressor', 'Linear Regression', 'Matplotlib', 'Seaborn'],
+      skills: ['Python', 'Machine Learning', 'Data Analysis', 'Data Visualization', 'PCA', 'ElasticNet Regressor', 'Linear Regression', 'Matplotlib', 'Seaborn', 'Pandas', 'Scikit-learn'],
       link: 'https://github.com/Yashuchirag/team_pressing_project'
     },
     {
