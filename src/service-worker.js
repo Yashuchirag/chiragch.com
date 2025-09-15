@@ -11,7 +11,7 @@ const urlsToCache = [
 ];
 
 // This will be replaced by workbox with the actual manifest
-const manifest = self.__WB_MANIFEST || [];
+const manifest = this.__WB_MANIFEST || [];
 
 // Install a service worker
 this.addEventListener('install', (event) => {
