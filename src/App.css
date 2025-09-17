@@ -262,6 +262,15 @@ section {
   opacity: 0.9;
 }
 
+/* About */
+.section-number {
+  display: flex;
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center */
+  height: 100px;            /* or parent’s height */
+  font-size: 2rem;
+}
+
 /* Buttons */
 .cta-buttons {
   display: flex;
