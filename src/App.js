@@ -3,6 +3,7 @@ import './App.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// Importing all the pages required
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Projects from './components/ProjectsPage';
@@ -13,9 +14,6 @@ import Experience from './components/ExperiencePage';
 import SkillsPage from './components/SkillsPage';
 import ContactPage from './components/ContactsPage';
 
-
-
-// App
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen] = useState(false);
