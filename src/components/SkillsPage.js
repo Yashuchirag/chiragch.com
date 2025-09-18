@@ -1,3 +1,4 @@
+import React from "react";
 import { skillsData } from "../data/Skills";
 
 const SkillsPage = () => {

@@ -8,7 +8,7 @@ import {
 import { SiLeetcode } from 'react-icons/si';
 
 
-const Hero = () => {
+const HeroPage = () => {
   const [activeTitle, setActiveTitle] = useState(0);
   const titles = ['Full Stack Engineer', 'Problem Solver', 'Tech Enthusiast'];
   const heroRef = useRef(null);
@@ -84,10 +84,9 @@ const Hero = () => {
         </div>
       </div>
       <button className="scroll-down" onClick={scrollToAbout} aria-label="Scroll down to about section">
-        <div className="arrow-down"></div>
       </button>
     </section>
   );
 };
 
-export default Hero;
+export default HeroPage;

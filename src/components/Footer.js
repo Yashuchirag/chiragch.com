@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
  return (
-    <div className="footer">
+    <footer className="footer">
         <div className="container">
             <div className="footer-content">
                 <q>Designed & Built by Chirag Chandrashekar</q>
@@ -15,7 +15,7 @@ const Footer = () => {
                 <q>&copy; {new Date().getFullYear()} Chirag Chandrashekar. All rights reserved.</q>
             </div>
         </div>
-    </div>
+    </footer>
  )
 };
 

@@ -1,61 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import './styles/index.css';
+import './styles/App.css';
 
-// Importing all the pages required
-import Footer from './components/Footer';
 import Header from './components/Header';
-import Projects from './components/ProjectsPage';
+import Footer from './components/Footer';
 import EducationPage from './components/EducationPage';
-import About from './components/AboutPage';
-import Hero from './components/HeroPage';
-import Experience from './components/ExperiencePage';
 import SkillsPage from './components/SkillsPage';
 import ContactPage from './components/ContactsPage';
+import HeroPage from './components/HeroPage';
+import AboutPage from './components/AboutPage';
+import ExperiencePage from './components/ExperiencePage';
+import ProjectsPage from './components/ProjectsPage';
 
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [isMenuOpen] = useState(false);
-
-  useEffect(() => {
-    AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false });
-  }, []);
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [currentPage]);
-
-  return (
-    <div className="App">
-      <Header isMenuOpen={isMenuOpen} setCurrentPage={setCurrentPage} />
-  
-      <main>
-        {currentPage === 'home' && (
+const App = () => { 
+  const [currentPage, setCurrentPage] = useState('home'); 
+  const [isMenuOpen] = useState(false); 
+  useEffect(() => { AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false }); }, []); 
+  useEffect(() => { AOS.refresh(); }, [currentPage]); 
+  return ( 
+    <div className="App"> 
+      <Header 
+        isMenuOpen={isMenuOpen} setCurrentPage={setCurrentPage} 
+      /> 
+      <main> 
+        {currentPage === 'home' && ( 
           <>
-            <Hero />
-            <About />
-            <Experience />
-            <Projects />
-            <EducationPage />
-            <SkillsPage />
-            <ContactPage />
+            <HeroPage />
           </>
-        )}
-        {currentPage === 'education' && (
-          <EducationPage onBack={() => setCurrentPage('home')} />
-        )}
-        {currentPage === 'skills' && (
-          <SkillsPage onBack={() => setCurrentPage('home')} />
-        )}
-        {currentPage === 'contact' && (
-          <ContactPage onBack={() => setCurrentPage('home')} />
-        )}
-      </main>
-  
+        )} 
+        {currentPage === 'about' && <AboutPage />}
+        {currentPage === 'experience' && <ExperiencePage />}
+        {currentPage === 'projects' && <ProjectsPage />}
+        {currentPage === 'education' && <EducationPage />}
+        {currentPage === 'skills' && <SkillsPage />}
+        {currentPage === 'contact' && <ContactPage />}
+      </main> 
       <Footer />
-    </div>
-  );
-};
+    </div> 
+  ); };
 
 export default App;

@@ -2,7 +2,7 @@ import React from "react";
 import { experiences } from "../data/Experience";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
-const Experience = () => {
+const ExperiencePage = () => {
     return (
       <section id="experience" className="section">
         <div className="container">
@@ -49,4 +49,4 @@ const Experience = () => {
     );
   };
 
-  export default Experience;
+  export default ExperiencePage;
