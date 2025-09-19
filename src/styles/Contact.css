@@ -1,0 +1,110 @@
+/* General page styling */
+.contact-page {
+    padding: 4rem 2rem;
+    background-color: #0f172a; /* dark navy background */
+    color: #e0f7fa; /* light cyan text */
+    min-height: 100vh;
+  }
+  
+  /* Page title */
+  .contact-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #00ffcc;
+    text-align: center;
+  }
+  
+  /* Contact content container */
+  .contact-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+  }
+  
+  /* Paragraph styling */
+  .contact-content p {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    color: #cbd5e1;
+  }
+  
+  /* Contact info container */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Individual contact item */
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #e0f7fa;
+    justify-content: center;
+    transition: color 0.3s ease;
+  }
+  
+  .contact-item a {
+    color: #00ffcc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contact-item a:hover {
+    color: #66ffe0;
+  }
+  
+  .contact-item svg {
+    color: #00ffcc;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  /* Social links */
+  .contact-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .contact-social-links a {
+    color: #00ffcc;
+    font-size: 1.75rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .contact-social-links a:hover {
+    color: #66ffe0;
+    transform: scale(1.1);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .contact-page {
+      padding: 3rem 1rem;
+    }
+  
+    .contact-page-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  
+    .contact-content p {
+      font-size: 1rem;
+    }
+  
+    .contact-item {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .contact-social-links {
+      gap: 1rem;
+    }
+  }
+  

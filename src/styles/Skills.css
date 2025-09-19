@@ -1,0 +1,93 @@
+/* SkillsPage.css */
+
+/* General page styling */
+.skills-page {
+    padding: 4rem 2rem;
+    background-color: #0f172a; /* dark navy background */
+    color: #e0f7fa; /* light cyan text */
+    min-height: 100vh;
+  }
+  
+  /* Page title */
+  .skills-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #00ffcc;
+    text-align: center;
+  }
+  
+  /* Skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Individual skills category */
+  .skills-category {
+    background-color: #1e293b; /* slightly lighter dark background */
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    border-left: 4px solid #00ffcc;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 255, 204, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .skills-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 204, 0.25);
+  }
+  
+  /* Category title */
+  .skills-category h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #00ffcc;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Skills tags container */
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  /* Individual skill tag */
+  .skills-tag {
+    background-color: #0f172a;
+    border: 1px solid #00ffcc;
+    border-radius: 9999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.9rem;
+    color: #00ffcc;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  
+  .skills-tag:hover {
+    background-color: #00ffcc;
+    color: #0f172a;
+    border-color: #00ffcc;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .skills-page {
+      padding: 3rem 1rem;
+    }
+  
+    .skills-page-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  
+    .skills-category {
+      padding: 1rem;
+    }
+  }
+  

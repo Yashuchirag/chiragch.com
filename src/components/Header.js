@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaHome } from 'react-icons/fa';
+import '../styles/Header.css';
 
 const Header = ({isMenuOpen, setCurrentPage}) => {
     return (
@@ -8,7 +9,7 @@ const Header = ({isMenuOpen, setCurrentPage}) => {
                   <nav className="nav">
                     <div className="logo">
                       <a href="#home" onClick={() => setCurrentPage('home')} aria-label="Home">
-                        <FaHome size={24} />
+                        <FaHome size={24} />Chirag
                       </a>
                     </div>
                     <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -17,7 +18,7 @@ const Header = ({isMenuOpen, setCurrentPage}) => {
                       <li><a href="#projects" onClick={() => setCurrentPage('projects')}>Projects</a></li>
                       <li><a href="#education" onClick={() => setCurrentPage('education')}>Education</a></li>
                       <li><a href="#skills" onClick={() => setCurrentPage('skills')}>Skills</a></li>
-                      <li><a href="#contact" onClick={() => setCurrentPage('contact')}>Contact</a></li>
+                      <li><a href="#contact" onClick={() => setCurrentPage('contact')} >Contact</a></li>
                     </ul>
                   </nav>
                 </div>

@@ -1,0 +1,146 @@
+/* ===== Section Base ===== */
+.section {
+    padding: 4rem 1.5rem;
+    background: #0f172a; /* dark background */
+    color: #f1f5f9;
+  }
+  
+  .experience-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* ===== Section Title ===== */
+  .experience-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #00ffcc;
+    text-align: center;
+  }
+  
+  /* ===== Grid/Table Layout ===== */
+  .experience-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* ===== Each Experience Card ===== */
+  .experience-item {
+    background: #1e293b;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .experience-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+  }
+  
+  /* ===== Header (Role, Company, Award, Period) ===== */
+  .experience-header {
+    margin-bottom: 1rem;
+  }
+  
+  .experience-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.25rem;
+  }
+  
+  .experience-header h3 span {
+    color: #00ffcc;
+    font-weight: 500;
+  }
+  
+  .experience-award {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .experience-award a {
+    color: #38bdf8;
+    text-decoration: underline;
+  }
+  
+  .award-icon {
+    font-size: 0.8rem;
+  }
+  
+  .experience-period {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #94a3b8;
+  }
+  
+  /* ===== Description ===== */
+  .experience-description {
+    margin-bottom: 1rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+  
+  /* ===== Responsibilities ===== */
+  .experience-responsibilities {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .experience-responsibilities li {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .experience-responsibilities .bullet {
+    width: 6px;
+    height: 6px;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    background: #00ffcc;
+    flex-shrink: 0;
+  }
+  
+  .experience-responsibilities .text {
+    flex: 1;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+  }
+  
+  /* ===== Skills Tags ===== */
+  .experience-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .skill-tag {
+    padding: 0.35rem 0.75rem;
+    background: #0f766e;
+    color: #f0fdfa;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+  
+  .skill-tag:hover {
+    background: #14b8a6;
+  }
+  
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .experience-timeline {
+      grid-template-columns: 1fr;
+    }
+  }
+  

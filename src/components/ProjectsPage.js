@@ -1,21 +1,22 @@
 import { Projects } from '../data/Projects';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import '../styles/Projects.css';
 
 const ProjectsPage = () => {
   
     return (
       <section id="projects" className="section">
-        <div className="container">
-          <h1 className="page-title" data-aos="fade-right">Projects</h1>
-          <div className="experience-timeline">
+        <div className="projects-container">
+          <h1 className="projects-page-title" data-aos="fade-right">Projects</h1>
+          <div className="projects-timeline">
             {Projects.map((project, index) => (
-              <div key={index} className="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="experience-header">
+              <div key={index} className="projects-item" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="projects-header">
                   <h3>{project.title} <span>@ {project.company}</span></h3>
-                  <span className="experience-period">{project.period}</span>
+                  <span className="projects-period">{project.period}</span>
                 </div>
-                <p className="experience-description">{project.description}</p>
-                <ul className="experience-responsibilities">
+                <p className="projects-description">{project.description}</p>
+                <ul className="projects-responsibilities">
                   {project.responsibilities.map((item, i) => (
                     <li key={i}>
                       <span className="bullet"></span>
@@ -23,7 +24,7 @@ const ProjectsPage = () => {
                     </li>
                   ))}
                 </ul>
-                <div className="experience-skills">
+                <div className="projects-skills">
                   {project.skills.map((skill, i) => (
                     <span key={i} className="skill-tag">{skill}</span>
                   ))}

@@ -8,6 +8,7 @@ import {
     FaGithub, 
     FaLinkedin 
 } from 'react-icons/fa';
+import '../styles/Contact.css';
 
 const ContactPage = () => {
     useEffect(() => {
@@ -15,8 +16,8 @@ const ContactPage = () => {
       }, []);
     
     return (
-        <section className="page" id="contact">
-            <h1 className="page-title" data-aos="fade-right">Contact Me</h1>
+        <section className="contact-page" id="contact">
+            <h1 className="contact-page-title" data-aos="fade-right">Contact Me</h1>
             <div className="contact-content" data-aos="fade-up" data-aos-delay="100">
                 <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll get back to you as soon as possible!</p>
                 
@@ -35,7 +36,7 @@ const ContactPage = () => {
                 </div>
                 </div>
         
-                <div className="social-links" data-aos="fade-up" data-aos-delay="400">
+                <div className="contact-social-links" data-aos="fade-up" data-aos-delay="400">
                 <a href="https://github.com/Yashuchirag" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
                 <a href="https://www.linkedin.com/in/chirag-chandrashe-15b965103/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
                 </div>

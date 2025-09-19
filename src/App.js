@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './styles/index.css';
-import './styles/App.css';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,6 +13,7 @@ import AboutPage from './components/AboutPage';
 import ExperiencePage from './components/ExperiencePage';
 import ProjectsPage from './components/ProjectsPage';
 
+
 const App = () => { 
   const [currentPage, setCurrentPage] = useState('home'); 
   const [isMenuOpen] = useState(false); 
@@ -21,9 +21,11 @@ const App = () => {
   useEffect(() => { AOS.refresh(); }, [currentPage]); 
   return ( 
     <div className="App"> 
+      
       <Header 
-        isMenuOpen={isMenuOpen} setCurrentPage={setCurrentPage} 
+        setCurrentPage={setCurrentPage} 
       /> 
+       
       <main> 
         {currentPage === 'home' && ( 
           <>

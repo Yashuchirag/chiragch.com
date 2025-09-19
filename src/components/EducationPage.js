@@ -1,4 +1,5 @@
 import { educationData } from "../data/Education";
+import '../styles/Education.css';
 
 const EducationPage = () => {
     const educationList = educationData.map((edu, index) => (
@@ -16,8 +17,8 @@ const EducationPage = () => {
     ));
   
     return (
-      <section className="page" id="education">
-        <h1 className="page-title" data-aos="fade-right">Education</h1>
+      <section className="education-page" id="education">
+        <h1 className="education-page-title" data-aos="fade-right">Education</h1>
         <div className="education-grid" data-aos="fade-up" data-aos-delay="100">
           {educationList}
         </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -14,14 +13,13 @@ root.render(
 // Register service worker for PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/custom-service-worker.js').then(
-      (registration) => {
+    navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/custom-service-worker.js`)
+      .then((registration) => {
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      },
-      (error) => {
-        console.log('ServiceWorker registration failed: ', error);
-      }
-    );
+      })
+      .catch((error) => {
+        console.error('ServiceWorker registration failed: ', error);
+      });
   });
 }
 

@@ -6,9 +6,10 @@ import {
   FaEnvelope
 } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
+import '../styles/Hero.css';
 
 
-const HeroPage = () => {
+const Hero = () => {
   const [activeTitle, setActiveTitle] = useState(0);
   const titles = ['Full Stack Engineer', 'Problem Solver', 'Tech Enthusiast'];
   const heroRef = useRef(null);
@@ -30,27 +31,27 @@ const HeroPage = () => {
   return (
     <section className="hero" id="home" ref={heroRef}>
       <div className="hero-overlay"></div>
-      <div className="container">
+      <div className="hero-container">
         <div className="hero-content">
-          <div className="profile-image-container" data-aos="fade-right">
+          <div className="hero-profile-image-container" data-aos="fade-right">
             <img
               src="/chirag_1.jpg"
               alt="Chirag Chandrashekar"
-              className="profile-image"
+              className="hero-profile-image"
               width="300"
               height="300"
               loading="eager"
             />
           </div>
           <div className="hero-text" data-aos="fade-left" data-aos-delay="200">
-            <p className="greeting">Hello there, this is</p>
+            <p className="hero-greeting">Hello there, this is</p>
             <h1>Chirag Chandrashekar.</h1>
-            <h2 className="typewriter">{titles[activeTitle]}</h2>
+            <h2 className="hero-typewriter">{titles[activeTitle]}</h2>
             <p className="hero-description">
               I'm a passionate software engineer specializing in building (and occasionally designing) exceptional digital experiences.
               Currently, I'm focused on creating impactful solutions at the intersection of technology and user experience.
             </p>
-            <div className="cta-buttons">
+            <div className="hero-cta-buttons">
               <a
                 href="/Chirag_Resume.pdf"
                 target="_blank"
@@ -69,7 +70,7 @@ const HeroPage = () => {
                 <FaEnvelope /> Get In Touch
               </a>
             </div>
-            <div className="social-links">
+            <div className="hero-social-links">
               <a href="https://github.com/Yashuchirag" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <FaGithub className="social-icon" />
               </a>
@@ -83,10 +84,11 @@ const HeroPage = () => {
           </div>
         </div>
       </div>
-      <button className="scroll-down" onClick={scrollToAbout} aria-label="Scroll down to about section">
+      <button className="hero-scroll-down" onClick={scrollToAbout} aria-label="Scroll down to about section">
+        <div className="hero-arrow-down"></div>
       </button>
     </section>
   );
 };
 
-export default HeroPage;
+export default Hero;

@@ -1,0 +1,93 @@
+/* ===== Header Base ===== */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #1a1a2e; /* dark navy */
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.header.active {
+  background: #16213e; /* slightly darker when active */
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== Logo ===== */
+.logo a {
+  color: #00ffcc;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.logo a:hover {
+  color: #00b894;
+}
+
+/* ===== Nav Links ===== */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links li a {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links li a:hover {
+  color: #00ffcc;
+}
+
+/* ===== Contact Button ===== */
+.nav-links .btn-primary {
+  padding: 0.5rem 1rem;
+  background: #00ffcc;
+  color: #1a1a2e !important;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.nav-links .btn-primary:hover {
+  background: #00b894;
+}
+
+/* ===== Mobile Styles ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0f3460;
+    height: 100vh;
+    width: 70%;
+    gap: 2rem;
+    transition: right 0.3s ease-in-out;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+}

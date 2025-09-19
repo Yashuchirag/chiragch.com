@@ -1,12 +1,13 @@
 import React from "react";
 import { experiences } from "../data/Experience";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import "../styles/Experience.css";
 
-const ExperiencePage = () => {
+const Experience = () => {
     return (
       <section id="experience" className="section">
-        <div className="container">
-          <h1 className="page-title" data-aos="fade-right">Work Experience</h1>
+        <div className="experience-container">
+          <h1 className="experience-page-title" data-aos="fade-right">Work Experience</h1>
           <div className="experience-timeline">
             {experiences.map((exp, index) => (
               <div key={index} className="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
@@ -49,4 +50,4 @@ const ExperiencePage = () => {
     );
   };
 
-  export default ExperiencePage;
+  export default Experience;
