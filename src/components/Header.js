@@ -17,7 +17,7 @@ const Header = ({isMenuOpen, setCurrentPage}) => {
                       <li><a href="#projects" onClick={() => setCurrentPage('home')}>Projects</a></li>
                       <li><a href="#education" onClick={() => setCurrentPage('education')}>Education</a></li>
                       <li><a href="#skills" onClick={() => setCurrentPage('skills')}>Skills</a></li>
-                      <li><a href="#contact" onClick={() => setCurrentPage('contact')} className="btn btn-primary">Contact</a></li>
+                      <li><a href="#contact" onClick={() => setCurrentPage('contact')}>Contact</a></li>
                     </ul>
                   </nav>
                 </div>
