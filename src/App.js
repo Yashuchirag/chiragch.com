@@ -13,6 +13,7 @@ import Hero from './components/HeroPage';
 import Experience from './components/ExperiencePage';
 import SkillsPage from './components/SkillsPage';
 import ContactPage from './components/ContactsPage';
+import EmailFormPage from './components/EmailFormPage';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -40,6 +41,7 @@ const App = () => {
             <EducationPage />
             <SkillsPage />
             <ContactPage />
+            <EmailFormPage />
           </>
         )}
         {currentPage === 'education' && (
@@ -50,6 +52,9 @@ const App = () => {
         )}
         {currentPage === 'contact' && (
           <ContactPage onBack={() => setCurrentPage('home')} />
+        )}
+        {currentPage === 'email' && (
+          <EmailFormPage onBack={() => setCurrentPage('home')} />
         )}
       </main>
   
