@@ -23,7 +23,6 @@ export default function EmailForm() {
     };
 
     const apiUrl = process.env.REACT_APP_EMAILJS_API;
-    console.log("API URL:", apiUrl);
 
     try {
       const response = await axios.post(
