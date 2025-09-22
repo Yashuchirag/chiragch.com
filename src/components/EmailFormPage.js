@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
 import "../styles/Email.css";
 
 export default function EmailForm() {
@@ -8,13 +8,12 @@ export default function EmailForm() {
   const [message, setMessage] = useState("");
   const [submissionMessage, setSubmissionMessage] = useState({ text: "", type: "" });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const serviceId = process.env.REACT_APP_SERVICE_ID;
     const templateId = process.env.REACT_APP_TEMPLATE_ID;
     const publicKey = process.env.REACT_APP_PUBLIC_KEY;
-
 
     const templateParams = {
       from_name: name,
@@ -22,27 +21,45 @@ export default function EmailForm() {
       to_name: "Chirag Chandrashekar",
       message: message,
     };
-    
 
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        console.log("✅ Email sent successfully!", response);
-        setSubmissionMessage({ text: "Message sent successfully!", type: "success" });
-        setName("");
-        setEmail("");
-        setMessage("");
-        setTimeout(() => {
-            setSubmissionMessage({ text: "", type: "" });
-          }, 3000);
-      })
-      .catch((error) => {
-        console.error("❌ Email sending failed:", error);
-        setSubmissionMessage({ text: "Failed to send message. Please try again.", type: "error" });
-        setTimeout(() => {
-            setSubmissionMessage({ text: "", type: "" });
-          }, 3000);
-      });
+    const apiUrl = process.env.REACT_APP_EMAILJS_API;
+
+    try {
+      const response = await axios.post(
+        apiUrl,
+        {
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          template_params: templateParams,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("✅ Email sent successfully!", response.data);
+      setSubmissionMessage({ text: "Message sent successfully!", type: "success" });
+
+      // Clear form fields
+      setName("");
+      setEmail("");
+      setMessage("");
+
+      // Reset message after 3 seconds
+      setTimeout(() => {
+        setSubmissionMessage({ text: "", type: "" });
+      }, 3000);
+    } catch (error) {
+      console.error("❌ Email sending failed:", error);
+      setSubmissionMessage({ text: "Failed to send message. Please try again.", type: "error" });
+
+      setTimeout(() => {
+        setSubmissionMessage({ text: "", type: "" });
+      }, 3000);
+    }
   };
 
   return (
