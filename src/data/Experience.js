@@ -1,5 +1,17 @@
 export const experiences = [
-    {
+  {
+    role: 'Software Developer',
+    company: 'Glenysys',
+    period: 'Aug 2024 - Present',
+    description: 'Designed and deployed scalable, high-quality data solutions for clinical trials using Java, Medidata Rave, and HP ALM, improving data integrity and accelerating project delivery.',
+    responsibilities: [
+      'Developed and deployed a scalable WMS using Java, Spring Boot, and PostgreSQL on GCP, improving efficiency by 40%. Implemented automation, microservices, and CI/CD pipelines to enhance scalability and support seamless supply chain integrations.',
+      'Collaborated in building a full-stack Product Management platform using React 18, Vite, Chakra UI, Zustand, and Framer Motion to deliver a responsive UI with dark/light mode, animations, and seamless CRUD operations.',
+      'Engineered and deployed the backend using Node.js, Express 5, MongoDB Atlas, and Mongoose, exposing secure REST APIs with CORS support, implemented environment-based configurations, and deployed services on Render and Netlify for production readiness.'
+    ],
+    skills: ['Java', 'Spring Boot', 'PostgreSQL', 'GCP', 'CI/CD pipeline', 'Microservices', 'React 18', 'Chakra UI', 'Zustand', 'Framer Motion', 'Vite', 'Express 5', 'MongoDB Atlas', 'Mongoose', 'CORS', "REST API's", 'Render', 'Netlify'],
+  },  
+  {
       role: 'Data Analyst',
       company: 'Accenture',
       period: 'Oct 2019 - Jul 2022',
