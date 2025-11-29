@@ -13,7 +13,7 @@ export const Projects = [
       'Created an interactive media browsing experience with categorized movie lists, dynamic fetching, loading states, toast notifications, and a React Player integration for seamless trailer/preview playback within the UI.',
       'Optimized the full development pipeline, including Vite’s fast HMR, minified production builds, environment-based configuration, and well-structured scripts for running, building, and deploying both frontend and backend services.'
       ],
-      skills: ['React 19 + Vite', 'TailwindCSS', 'DaisyUI', 'Zustand', 'React Hot Toast / Toastify', 'React Query', 'Node.js + Express', 'MongoDB & Mongoose', 'JWT Authentication', 'Bcrypt for hashing', 'Vercel/Netlify'],
+      skills: ['React 19 + Vite', 'TailwindCSS', 'DaisyUI', 'Zustand', 'Render', 'React Hot Toast / Toastify', 'React Query', 'Node.js + Express', 'MongoDB & Mongoose', 'JWT Authentication', 'Bcrypt for hashing'],
       link: 'https://github.com/Yashuchirag/netflix-clone'
     },
     {
