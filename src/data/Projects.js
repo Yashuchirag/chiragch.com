@@ -1,8 +1,25 @@
 export const Projects = [
     {
-      title: 'Informative AI App',
+      title: 'Netflix Clone — MERN Full-Stack Streaming Platform',
       company: 'Personal Project / Chirag Chandrashekar',
       period: 'July 2025 - Present',
+      description: 'A fully responsive Netflix-style streaming application built using the MERN stack with a modern UI and production-ready architecture. This project showcases robust backend design, scalable API structures, and a seamless user experience powered by React, TailwindCSS, and Zustand.',
+      responsibilities: [
+      'Engineered a full-stack MERN application replicating core streaming platform functionality, featuring secure authentication, category-based browsing, watchlists, and video previews, designed to mimic the user experience of modern OTT platforms.',
+      'Developed a responsive, mobile-first UI using React 19, Vite, TailwindCSS, and DaisyUI, implementing smooth animations, optimized layouts, accessibility considerations, and consistent component patterns to deliver a polished, high-performance frontend.',
+      'Implemented a scalable backend with Node.js, Express 5, and MongoDB, including structured REST API routes, modular controllers, and robust Mongoose models to support authentication flows, movie retrieval, and persistent watchlist management.',
+      'Designed and integrated secure authentication workflows using JWT, Bcrypt, and HTTP-only cookies, ensuring protected routes, automatic revalidation, and reliable session handling while preventing common vulnerabilities.',
+      'Built global state and data-fetching logic using Zustand and React Query, enabling client-side caching, optimistic updates, background refetching, and reduced API latency for smoother browsing and near-instant UI response.',
+      'Created an interactive media browsing experience with categorized movie lists, dynamic fetching, loading states, toast notifications, and a React Player integration for seamless trailer/preview playback within the UI.',
+      'Optimized the full development pipeline, including Vite’s fast HMR, minified production builds, environment-based configuration, and well-structured scripts for running, building, and deploying both frontend and backend services.'
+      ],
+      skills: ['React 19 + Vite', 'TailwindCSS', 'DaisyUI', 'Zustand', 'React Hot Toast / Toastify', 'React Query', 'Node.js + Express', 'MongoDB & Mongoose', 'JWT Authentication', 'Bcrypt for hashing', 'Vercel/Netlify'],
+      link: 'https://github.com/Yashuchirag/netflix-clone'
+    },
+    {
+      title: 'Informative AI App',
+      company: 'Personal Project / Chirag Chandrashekar',
+      period: 'July 2025 - August 2025',
       description: 'Built a modern, production-ready web application using Next.js 14 and React 18 that provides AI-powered information and interactive chat features with a focus on responsive design, accessibility, and developer ergonomics.',
       responsibilities: [
       'Architected and implemented a Next.js 14 + React 18 frontend with concurrent rendering, fast refresh, and an optimized production build pipeline to ensure low-latency AI interactions and smooth UX across devices.',
