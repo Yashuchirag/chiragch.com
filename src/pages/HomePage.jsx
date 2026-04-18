@@ -8,6 +8,7 @@ import ShootingStars from '../components/space/ShootingStars.jsx'
 import OrbitingPlanet from '../components/space/OrbitingPlanet.jsx'
 import { Sun, Mercury, Venus, Earth, Jupiter, Saturn } from '../components/space/PlanetVisual.jsx'
 import { useWindowSize } from '../utils/useWindowSize.js'
+import AskPanel from '../components/AskPanel.jsx'
 
 const roles = ['Full Stack Engineer', 'Computer Vision Engineer', 'Problem Solver']
 
@@ -160,6 +161,7 @@ export default function HomePage() {
     >
       <StarField count={240} />
       <ShootingStars />
+      <AskPanel />
 
       {isMobile ? (
         /* ── Mobile Layout ── */
