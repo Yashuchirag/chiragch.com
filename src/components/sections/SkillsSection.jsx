@@ -13,7 +13,7 @@ const categoryIcons = {
 export default function SkillsSection() {
   return (
     <section id="skills" className="relative z-10 py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <SectionHeading label="Skills" sub="What I work with" />
 
         <div className="grid md:grid-cols-2 gap-6">

@@ -9,8 +9,8 @@ export default function ExperienceSection() {
   const [expanded, setExpanded] = useState(0)
 
   return (
-    <section id="experience" className="relative z-10 py-32">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="experience" className="relative z-10 py-28">
+      <div className="max-w-5xl mx-auto px-6">
         <SectionHeading label="Experience" sub="Where I've worked" />
 
         <div className="flex flex-col gap-4">
@@ -19,11 +19,17 @@ export default function ExperienceSection() {
             return (
               <motion.div
                 key={i}
-                className="glass glass-hover rounded-2xl overflow-hidden cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
+                className="glass rounded-2xl overflow-hidden cursor-pointer"
+                style={{
+                  border: isOpen
+                    ? '1px solid rgba(129, 140, 248, 0.3)'
+                    : '1px solid rgba(255, 255, 255, 0.08)',
+                }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                whileHover={{ boxShadow: '0 8px 32px rgba(129, 140, 248, 0.1)' }}
                 onClick={() => setExpanded(isOpen ? -1 : i)}
               >
                 {/* Header row */}
@@ -36,7 +42,11 @@ export default function ExperienceSection() {
                       {exp.award && (
                         <span
                           className="flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-full"
-                          style={{ background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.25)', color: '#34d399' }}
+                          style={{
+                            background: 'rgba(52,211,153,0.1)',
+                            border: '1px solid rgba(52,211,153,0.25)',
+                            color: '#34d399',
+                          }}
                         >
                           <FaAward size={10} /> {exp.award.name}
                         </span>
@@ -47,7 +57,7 @@ export default function ExperienceSection() {
                   </div>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.25 }}
                     className="flex-shrink-0 mt-1"
                     style={{ color: '#475569' }}
                   >
@@ -66,10 +76,7 @@ export default function ExperienceSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
-                      <div
-                        className="px-6 pb-6 border-t"
-                        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-                      >
+                      <div className="px-6 pb-6 border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
                         <p className="text-sm leading-relaxed mt-4 mb-4" style={{ color: '#94a3b8' }}>
                           {exp.description}
                         </p>
@@ -89,11 +96,9 @@ export default function ExperienceSection() {
                             href={exp.award.PDF}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 mt-4 text-xs font-mono transition-colors"
+                            className="inline-flex items-center gap-1.5 mt-4 text-xs font-mono"
                             style={{ color: '#34d399' }}
                             onClick={(e) => e.stopPropagation()}
-                            onMouseEnter={(e) => e.currentTarget.style.color = '#6ee7b7'}
-                            onMouseLeave={(e) => e.currentTarget.style.color = '#34d399'}
                           >
                             <FaAward size={12} /> View Award Certificate <FaExternalLinkAlt size={10} />
                           </a>

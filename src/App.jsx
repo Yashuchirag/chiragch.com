@@ -1,30 +1,27 @@
 import React from 'react'
-import Header from './components/layout/Header.jsx'
-import Footer from './components/layout/Footer.jsx'
-import HeroSection from './components/sections/HeroSection.jsx'
-import AboutSection from './components/sections/AboutSection.jsx'
-import ExperienceSection from './components/sections/ExperienceSection.jsx'
-import ProjectsSection from './components/sections/ProjectsSection.jsx'
-import EducationSection from './components/sections/EducationSection.jsx'
-import SkillsSection from './components/sections/SkillsSection.jsx'
-import ContactSection from './components/sections/ContactSection.jsx'
-import GradientBackground from './components/ui/GradientBackground.jsx'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import HomePage from './pages/HomePage.jsx'
+import AboutPage from './pages/AboutPage.jsx'
+import ExperiencePage from './pages/ExperiencePage.jsx'
+import EducationPage from './pages/EducationPage.jsx'
+import ProjectsPage from './pages/ProjectsPage.jsx'
+import SkillsPage from './pages/SkillsPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 
 export default function App() {
+  const location = useLocation()
   return (
-    <div className="relative min-h-screen">
-      <GradientBackground />
-      <Header />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <EducationSection />
-        <SkillsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/"           element={<HomePage />} />
+        <Route path="/about"      element={<AboutPage />} />
+        <Route path="/experience" element={<ExperiencePage />} />
+        <Route path="/education"  element={<EducationPage />} />
+        <Route path="/projects"   element={<ProjectsPage />} />
+        <Route path="/skills"     element={<SkillsPage />} />
+        <Route path="/contact"    element={<ContactPage />} />
+      </Routes>
+    </AnimatePresence>
   )
 }

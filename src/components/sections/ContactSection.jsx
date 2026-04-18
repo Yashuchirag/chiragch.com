@@ -34,7 +34,7 @@ const contactLinks = [
 export default function ContactSection() {
   return (
     <section id="contact" className="relative z-10 py-32">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+      <div className="max-w-3xl mx-auto px-6 text-center">
         <SectionHeading label="Get In Touch" sub="Let's connect" />
 
         <motion.p

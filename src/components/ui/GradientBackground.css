@@ -1,0 +1,66 @@
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(100px);
+  opacity: 0.22;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: #7c3aed;
+  top: -150px;
+  left: -150px;
+  animation: float1 20s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: #2563eb;
+  top: 5%;
+  right: -100px;
+  animation: float2 24s ease-in-out infinite;
+}
+
+.blob-3 {
+  width: 450px;
+  height: 450px;
+  background: #0891b2;
+  bottom: 20%;
+  left: 15%;
+  animation: float3 22s ease-in-out infinite;
+}
+
+.blob-4 {
+  width: 380px;
+  height: 380px;
+  background: #7c3aed;
+  bottom: -100px;
+  right: 10%;
+  animation: float4 26s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, 30px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-30px, 40px) scale(1.04); }
+  66%       { transform: translate(20px, -20px) scale(0.98); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(30px, -30px) scale(1.06); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-25px, -20px) scale(1.04); }
+  80%       { transform: translate(15px, 25px) scale(0.96); }
+}

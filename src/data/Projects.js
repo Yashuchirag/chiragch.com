@@ -1,5 +1,20 @@
 export const Projects = [
     {
+      title: 'Badminton Match Analysis — AI-Powered Sports Analytics',
+      company: 'Personal Project / Chirag Chandrashekar',
+      period: 'Present',
+      description: 'An Expo + React Native mobile application that analyzes badminton match videos using computer vision and machine learning to deliver automated scoring, rally segmentation, and player movement analytics — bridging sports science and AI.',
+      responsibilities: [
+        'Architected a cross-platform mobile app using Expo SDK 54, React Native, and TypeScript with Expo Router for navigation, enabling users to upload or record match footage directly from their device for AI-powered analysis.',
+        'Integrated a FastAPI backend processing pipeline using OpenCV for frame-level video analysis, YOLOv8 for real-time player and shuttlecock detection, and TrackNet for high-accuracy shuttle trajectory tracking across rally sequences.',
+        'Designed automated rally segmentation and point detection logic to parse match footage into discrete scoring events, generating per-rally statistics, match scorecards, and player movement heatmaps.',
+        'Built video input workflows supporting both gallery uploads and live recording via Expo Video Picker, with backend communication handled asynchronously to keep the mobile UI responsive during heavy ML inference.',
+        'Conducted deep experimentation with YOLO and TrackNet model configurations on real match footage, evaluating detection accuracy under varying court lighting, camera angles, and shuttle speeds.'
+      ],
+      skills: ['React Native', 'Expo SDK 54', 'TypeScript', 'Expo Router', 'FastAPI', 'Python', 'OpenCV', 'YOLOv8', 'TrackNet', 'Computer Vision', 'Machine Learning', 'Sports Analytics'],
+      link: 'https://github.com/Yashuchirag/badminton-analysis'
+    },
+    {
       title: 'Netflix Clone — MERN Full-Stack Streaming Platform',
       company: 'Personal Project / Chirag Chandrashekar',
       period: 'July 2025 - Present',

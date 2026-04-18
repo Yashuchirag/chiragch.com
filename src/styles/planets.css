@@ -1,0 +1,120 @@
+/* ── Sun ── */
+.planet-sun {
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%,
+    #fffff0 0%, #fef9c3 10%, #fde68a 25%,
+    #fbbf24 45%, #f59e0b 62%, #d97706 76%,
+    #b45309 88%, #78350f 100%);
+  box-shadow:
+    0 0 30px 12px rgba(251,191,36,0.7),
+    0 0 70px 28px rgba(245,158,11,0.45),
+    0 0 130px 55px rgba(217,119,6,0.2);
+  animation: sun-pulse 4s ease-in-out infinite;
+}
+@keyframes sun-pulse {
+  0%,100% { box-shadow: 0 0 30px 12px rgba(251,191,36,0.7), 0 0 70px 28px rgba(245,158,11,0.45), 0 0 130px 55px rgba(217,119,6,0.2); }
+  50%      { box-shadow: 0 0 40px 18px rgba(251,191,36,0.8), 0 0 90px 36px rgba(245,158,11,0.5),  0 0 160px 70px rgba(217,119,6,0.25); }
+}
+
+/* ── Mercury ── */
+.planet-mercury {
+  border-radius: 50%;
+  background: radial-gradient(circle at 33% 33%,
+    #e5e7eb 0%, #d1d5db 15%, #9ca3af 35%,
+    #6b7280 58%, #4b5563 78%, #374151 100%);
+  box-shadow: 0 0 10px 3px rgba(156,163,175,0.35);
+}
+
+/* ── Venus ── */
+.planet-venus {
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 30%,
+    #fefce8 0%, #fef9c3 12%, #fde68a 28%,
+    #fbbf24 48%, #f59e0b 65%, #d97706 80%, #b45309 100%);
+  box-shadow: 0 0 18px 6px rgba(253,230,138,0.55), 0 0 45px 18px rgba(245,158,11,0.2);
+  animation: planet-rotate 40s linear infinite;
+}
+
+/* ── Earth ── */
+.planet-earth {
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 55% 40%, rgba(34,197,94,0.6) 0%, transparent 40%),
+    radial-gradient(ellipse at 25% 65%, rgba(34,197,94,0.4) 0%, transparent 30%),
+    radial-gradient(circle at 35% 35%,
+      #e0f2fe 0%, #7dd3fc 12%, #38bdf8 28%,
+      #0ea5e9 45%, #0284c7 62%, #0369a1 78%, #0c4a6e 100%);
+  box-shadow: 0 0 18px 6px rgba(56,189,248,0.5), 0 0 40px 15px rgba(2,132,199,0.2);
+  animation: planet-rotate 30s linear infinite;
+}
+
+/* ── Jupiter ── */
+.planet-jupiter {
+  border-radius: 50%;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    177deg,
+    #c8956c 0px, #c8956c 7px,
+    #ecd5a8 7px, #ecd5a8 14px,
+    #d4a87a 14px, #d4a87a 19px,
+    #f5e8c8 19px, #f5e8c8 26px,
+    #b8743c 26px, #b8743c 32px,
+    #e2c090 32px, #e2c090 38px,
+    #c47840 38px, #c47840 45px,
+    #f0d8a8 45px, #f0d8a8 52px
+  );
+  box-shadow: 0 0 22px 8px rgba(200,149,108,0.45), 0 0 50px 20px rgba(184,116,60,0.2);
+  animation: planet-rotate 20s linear infinite;
+}
+
+/* ── Saturn body ── */
+.planet-saturn {
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 36%,
+    #fefce8 0%, #fef3c7 18%, #fde68a 38%,
+    #fbbf24 58%, #d97706 78%, #92400e 100%);
+  box-shadow: 0 0 16px 5px rgba(253,230,138,0.45);
+  animation: planet-rotate 35s linear infinite;
+}
+
+/* ── Neptune (decorative on contact page) ── */
+.planet-neptune {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+    #bfdbfe 0%, #60a5fa 20%, #3b82f6 40%,
+    #1d4ed8 60%, #1e3a8a 80%, #172554 100%);
+  box-shadow: 0 0 20px 7px rgba(96,165,250,0.4), 0 0 50px 20px rgba(29,78,216,0.2);
+}
+
+/* ── Slow rotation for planets that spin ── */
+@keyframes planet-rotate {
+  from { filter: brightness(1) hue-rotate(0deg); }
+  to   { filter: brightness(1) hue-rotate(0deg); }
+}
+
+/* ── Shooting stars ── */
+/* star-move: translates along the rotated parent's x-axis → diagonal on screen */
+@keyframes star-move {
+  0%   { transform: translateX(-20px); }
+  100% { transform: translateX(420px); }
+}
+@keyframes star-fade {
+  0%   { opacity: 0; }
+  6%   { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ── Twinkle ── */
+@keyframes twinkle {
+  0%, 100% { opacity: var(--star-opacity); transform: scale(1); }
+  50%       { opacity: calc(var(--star-opacity) * 0.3); transform: scale(0.6); }
+}
+
+/* ── Planet page glow overlays ── */
+.earth-glow   { background: radial-gradient(ellipse at 80% 50%, rgba(14,165,233,0.18) 0%, transparent 65%); }
+.jupiter-glow { background: radial-gradient(ellipse at 85% 50%, rgba(200,149,108,0.2) 0%, transparent 65%); }
+.mercury-glow { background: radial-gradient(ellipse at 85% 20%, rgba(251,191,36,0.12) 0%, transparent 55%); }
+.venus-glow   { background: radial-gradient(ellipse at 80% 50%, rgba(251,191,36,0.2) 0%, transparent 65%); }
+.saturn-glow  { background: radial-gradient(ellipse at 85% 50%, rgba(253,230,138,0.16) 0%, transparent 65%); }
+.contact-glow { background: radial-gradient(ellipse at 60% 40%, rgba(168,85,247,0.14) 0%, transparent 60%); }

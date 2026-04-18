@@ -7,18 +7,19 @@ import { educationData } from '../../data/Education.js'
 export default function EducationSection() {
   return (
     <section id="education" className="relative z-10 py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <SectionHeading label="Education" sub="My academic background" />
 
         <div className="grid md:grid-cols-2 gap-6">
           {educationData.map((edu, i) => (
             <motion.div
               key={i}
-              className="glass glass-hover rounded-2xl p-8"
+              className="glass rounded-2xl p-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
+              whileHover={{ boxShadow: '0 8px 32px rgba(129, 140, 248, 0.1)', borderColor: 'rgba(255,255,255,0.15)' }}
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
