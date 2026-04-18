@@ -62,7 +62,7 @@ export const Projects = [
       title: 'Glasso Algorithm Project',
       company: 'University of Colorado Boulder',
       period: 'Jan 2024 - April 2024',
-      description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
+      description: 'Implemented the Graphical Lasso (GLASSO) algorithm to estimate sparse precision matrices for high-dimensional Gaussian graphical models, enabling interpretable analysis of conditional dependencies in large-scale datasets including gene expression data.',
       responsibilities: [
         'Developed and implemented machine learning solutions using the Graphical Lasso (GLASSO) algorithm to analyze large Gaussian graphical models in high-dimensional datasets, enhancing the interpretability of complex data relationships.',
         'Estimated sparse precision matrices to improve the accuracy of predictions, anomaly detection, and scenario simulations, while conducting in-depth analysis of marginal and conditional independence within graphs.',
@@ -75,7 +75,7 @@ export const Projects = [
       title: 'Forest Cover-Type Prediction',
       company: 'University of Colorado Boulder',
       period: 'Jan 2023 - April 2023',
-      description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
+      description: 'Built high-accuracy forest cover-type classification models on a 580,000+ sample dataset using logistic regression, neural networks, PCA, and bagging — achieving 96.85% test accuracy through rigorous feature engineering, outlier removal, and hyperparameter tuning.',
       responsibilities: [
         'Developed high-accuracy forest cover-type prediction models using logistic regression, neural networks, PCA, and bagging techniques, achieving 96.85% test accuracy by optimizing model performance through feature scaling, outlier removal, and preprocessing of 580,000+ samples.',
         'Performed sensitivity analysis using confusion matrices and correlation heatmaps, evaluating model robustness and identifying key feature dependencies to refine predictive accuracy.',
