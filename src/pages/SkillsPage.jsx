@@ -4,6 +4,7 @@ import StarField from '../components/space/StarField.jsx'
 import BackToHome from '../components/space/BackToHome.jsx'
 import { Saturn } from '../components/space/PlanetVisual.jsx'
 import { skillsData } from '../data/Skills.js'
+import ScrambleText from '../components/ui/ScrambleText.jsx'
 
 const CATEGORY_ACCENT = {
   'Frontend': { color: '#fbbf24', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.2)' },
@@ -31,22 +32,21 @@ export default function SkillsPage() {
       <StarField count={170} />
       <div className="saturn-glow fixed inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
-      {/* Saturn — right side, large */}
       <div style={{ position: 'fixed', top: '50%', right: -180, transform: 'translateY(-50%)', zIndex: 2, opacity: 0.5, pointerEvents: 'none' }}>
         <Saturn size={400} />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 10, maxWidth: 820, margin: '0 auto', padding: 'clamp(52px, 8vh, 80px) clamp(16px, 4vw, 28px) clamp(64px, 10vh, 100px)' }}>
-        <motion.div {...fadeUp(0.1)} style={{ marginBottom: 48 }}>
-          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: '#fbbf24', letterSpacing: '0.12em', marginBottom: 10 }}>
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: 1020, margin: '0 auto', padding: 'clamp(52px, 8vh, 80px) clamp(20px, 4vw, 36px) clamp(64px, 10vh, 100px)' }}>
+        <motion.div {...fadeUp(0.1)} style={{ marginBottom: 56 }}>
+          <ScrambleText as="p" delay={400} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 16, color: '#fbbf24', letterSpacing: '0.12em', marginBottom: 12 }}>
             Saturn · skills
-          </p>
-          <h1 style={{ fontSize: 'clamp(28px, 6vw, 52px)', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em' }}>
+          </ScrambleText>
+          <ScrambleText as="h1" delay={600} style={{ fontSize: 'clamp(36px, 7vw, 64px)', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', display: 'block' }}>
             What I Work With
-          </h1>
+          </ScrambleText>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(360px, 100%), 1fr))', gap: 18 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(420px, 100%), 1fr))', gap: 22 }}>
           {skillsData.map((category, i) => {
             const accent = CATEGORY_ACCENT[category.category] || { color: '#fbbf24', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.2)' }
             return (
@@ -54,12 +54,12 @@ export default function SkillsPage() {
                 key={category.category}
                 {...fadeUp(0.2 + i * 0.1)}
                 className="glass"
-                style={{ padding: '26px 26px', border: `1px solid ${accent.border}` }}
+                style={{ padding: '32px 32px', border: `1px solid ${accent.border}` }}
               >
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: accent.color, marginBottom: 16 }}>
+                <ScrambleText as="h3" delay={700 + i * 100} style={{ fontSize: 18, fontWeight: 700, color: accent.color, marginBottom: 20 }}>
                   {category.category}
-                </h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+                </ScrambleText>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 9 }}>
                   {category.tags.map((tag, j) => (
                     <motion.span
                       key={tag}
@@ -67,13 +67,13 @@ export default function SkillsPage() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.3 + i * 0.1 + j * 0.03 }}
                       style={{
-                        fontSize: 12, padding: '5px 12px', borderRadius: 20,
+                        fontSize: 14, padding: '6px 14px', borderRadius: 20,
                         background: accent.bg, border: `1px solid ${accent.border}`,
                         color: accent.color, fontFamily: "'JetBrains Mono',monospace",
                         cursor: 'default',
                       }}
                     >
-                      {tag}
+                      <ScrambleText as="span" delay={800 + i * 80 + j * 30}>{tag}</ScrambleText>
                     </motion.span>
                   ))}
                 </div>

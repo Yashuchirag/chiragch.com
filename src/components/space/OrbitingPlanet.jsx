@@ -60,11 +60,15 @@ export default function OrbitingPlanet({
           alignItems: 'center',
           gap: 6,
           transform: 'translate(-50%, -50%)',
-          transition: 'filter 0.2s',
-          filter: hovered ? 'brightness(1.4)' : 'brightness(1)',
         }}
       >
-        {planet}
+        <div style={{
+          transition: 'transform 0.25s ease, filter 0.2s',
+          transform: hovered ? 'scale(1.18)' : 'scale(1)',
+          filter: hovered ? 'brightness(1.4)' : 'brightness(1)',
+        }}>
+          {planet}
+        </div>
         {/* Label */}
         <div style={{
           opacity: hovered ? 1 : 0,

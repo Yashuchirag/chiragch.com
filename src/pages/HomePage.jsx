@@ -9,6 +9,7 @@ import OrbitingPlanet from '../components/space/OrbitingPlanet.jsx'
 import { Sun, Mercury, Venus, Earth, Jupiter, Saturn } from '../components/space/PlanetVisual.jsx'
 import { useWindowSize } from '../utils/useWindowSize.js'
 import AskPanel from '../components/AskPanel.jsx'
+import ScrambleText from '../components/ui/ScrambleText.jsx'
 
 const roles = ['Full Stack Engineer', 'Computer Vision Engineer', 'Problem Solver']
 
@@ -58,11 +59,11 @@ function TypewriterRole({ text }) {
 function CardContent({ roleIdx, navigate }) {
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
         <div style={{
-          width: 105, height: 105, borderRadius: '50%', padding: 3,
+          width: 128, height: 128, borderRadius: '50%', padding: 3,
           background: 'linear-gradient(135deg, #fbbf24, #f59e0b, #d97706)',
-          boxShadow: '0 0 28px rgba(251,191,36,0.4)',
+          boxShadow: '0 0 32px rgba(251,191,36,0.4)',
         }}>
           <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#00000f' }}>
             <img src="/chirag_1.jpg" alt="Chirag Chandrashekar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -70,43 +71,43 @@ function CardContent({ roleIdx, navigate }) {
         </div>
       </div>
 
-      <h2 style={{ fontSize: 22, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em', marginBottom: 6 }}>
+      <ScrambleText as="h2" delay={800} style={{ fontSize: 26, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em', marginBottom: 8, display: 'block' }}>
         Chirag Chandrashekar
-      </h2>
+      </ScrambleText>
 
-      <div style={{ fontSize: 14, fontWeight: 600, height: 22, marginBottom: 14 }}>
+      <div style={{ fontSize: 17, fontWeight: 600, height: 26, marginBottom: 18 }}>
         <TypewriterRole text={roles[roleIdx]} />
       </div>
 
-      <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, marginBottom: 20 }}>
+      <ScrambleText as="p" delay={950} style={{ fontSize: 16, color: '#94a3b8', lineHeight: 1.65, marginBottom: 24 }}>
         Building scalable software at the intersection of engineering and intelligence.
-      </p>
+      </ScrambleText>
 
-      <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 18, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginBottom: 22, flexWrap: 'wrap' }}>
         <motion.a
           href="/Chirag_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            display: 'flex', alignItems: 'center', gap: 6,
-            padding: '8px 16px', borderRadius: 10,
+            display: 'flex', alignItems: 'center', gap: 7,
+            padding: '10px 20px', borderRadius: 10,
             background: 'linear-gradient(135deg, #fbbf24, #d97706)',
-            color: '#000', fontSize: 13, fontWeight: 600, textDecoration: 'none',
+            color: '#000', fontSize: 15, fontWeight: 600, textDecoration: 'none',
             boxShadow: '0 4px 14px rgba(251,191,36,0.4)',
           }}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
         >
-          <FaFilePdf size={12} /> Resume
+          <FaFilePdf size={14} /> Resume
         </motion.a>
         <motion.a
           href="#"
           onClick={(e) => { e.preventDefault(); navigate('/contact') }}
           style={{
-            display: 'flex', alignItems: 'center', gap: 6,
-            padding: '8px 16px', borderRadius: 10,
+            display: 'flex', alignItems: 'center', gap: 7,
+            padding: '10px 20px', borderRadius: 10,
             border: '1px solid rgba(251,191,36,0.35)',
-            color: '#fbbf24', fontSize: 13, fontWeight: 600, textDecoration: 'none',
+            color: '#fbbf24', fontSize: 15, fontWeight: 600, textDecoration: 'none',
           }}
           whileHover={{ scale: 1.04, background: 'rgba(251,191,36,0.08)' }}
           whileTap={{ scale: 0.97 }}
@@ -115,11 +116,11 @@ function CardContent({ roleIdx, navigate }) {
         </motion.a>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 20 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 24 }}>
         {[
-          { icon: <FaGithub size={18} />, href: 'https://github.com/Yashuchirag', label: 'GitHub' },
-          { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/chirag-ch/', label: 'LinkedIn' },
-          { icon: <SiLeetcode size={18} />, href: 'https://leetcode.com/u/YashuChirag/', label: 'LeetCode' },
+          { icon: <FaGithub size={22} />, href: 'https://github.com/Yashuchirag', label: 'GitHub' },
+          { icon: <FaLinkedin size={22} />, href: 'https://www.linkedin.com/in/chirag-ch/', label: 'LinkedIn' },
+          { icon: <SiLeetcode size={22} />, href: 'https://leetcode.com/u/YashuChirag/', label: 'LeetCode' },
         ].map(({ icon, href, label }) => (
           <motion.a
             key={label}
@@ -173,29 +174,30 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             style={{ textAlign: 'center', marginBottom: 28 }}
           >
-            <p style={{
+            <ScrambleText as="p" delay={300} style={{
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: 11, color: 'rgba(251,191,36,0.6)',
               letterSpacing: '0.18em', marginBottom: 6, textTransform: 'uppercase',
             }}>
               Welcome to
-            </p>
-            <h1 style={{
+            </ScrambleText>
+            <ScrambleText as="h1" delay={500} style={{
               fontFamily: "'Orbitron', sans-serif",
               fontSize: 'clamp(26px, 8vw, 46px)',
               fontWeight: 800, color: '#fff',
               letterSpacing: '0.04em', lineHeight: 1.1,
               textShadow: '0 0 40px rgba(251,191,36,0.35)',
+              display: 'block',
             }}>
               My Universe
-            </h1>
+            </ScrambleText>
           </motion.div>
 
           {/* Info card */}
           <motion.div
             className="glass"
             style={{
-              padding: '28px 24px', textAlign: 'center',
+              padding: '36px 30px', textAlign: 'center',
               border: '1px solid rgba(251,191,36,0.16)',
               boxShadow: '0 0 50px rgba(251,191,36,0.05), 0 20px 60px rgba(0,0,0,0.6)',
               marginBottom: 28,
@@ -213,13 +215,13 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <p style={{
+            <ScrambleText as="p" delay={400} style={{
               fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
               color: 'rgba(251,191,36,0.5)', letterSpacing: '0.12em',
               textAlign: 'center', marginBottom: 14,
             }}>
               Explore the universe
-            </p>
+            </ScrambleText>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
               {MOBILE_NAV.map((p, i) => (
                 <motion.div
@@ -238,12 +240,12 @@ export default function HomePage() {
                   }}
                 >
                   {p.planet}
-                  <span style={{
+                  <ScrambleText as="span" delay={500 + i * 60} style={{
                     fontSize: 10, fontFamily: "'JetBrains Mono', monospace",
                     color: '#94a3b8', textAlign: 'center',
                   }}>
                     {p.label}
-                  </span>
+                  </ScrambleText>
                 </motion.div>
               ))}
             </div>
@@ -307,34 +309,35 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <p style={{
+              <ScrambleText as="p" delay={700} style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 12, color: 'rgba(251,191,36,0.6)',
                 letterSpacing: '0.18em', marginBottom: 6, textTransform: 'uppercase',
               }}>
                 Welcome to
-              </p>
-              <h1 style={{
+              </ScrambleText>
+              <ScrambleText as="h1" delay={900} style={{
                 fontFamily: "'Orbitron', sans-serif",
                 fontSize: 'clamp(36px, 5vw, 68px)',
                 fontWeight: 800, color: '#fff',
                 letterSpacing: '0.04em', lineHeight: 1.1,
                 textShadow: '0 0 60px rgba(251,191,36,0.35), 0 0 20px rgba(251,191,36,0.15)',
+                display: 'block',
               }}>
                 My Universe
-              </h1>
-              <p style={{
+              </ScrambleText>
+              <ScrambleText as="p" delay={1050} style={{
                 marginTop: 10, fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 12, color: 'rgba(251,191,36,0.7)', letterSpacing: '0.12em',
               }}>
                 click a planet to explore ↗
-              </p>
+              </ScrambleText>
             </motion.div>
 
             <motion.div
               className="glass"
               style={{
-                pointerEvents: 'all', padding: '32px 36px', width: 370, flexShrink: 0,
+                pointerEvents: 'all', padding: '40px 44px', width: 450, flexShrink: 0,
                 textAlign: 'center', border: '1px solid rgba(251,191,36,0.16)',
                 boxShadow: '0 0 50px rgba(251,191,36,0.05), 0 20px 60px rgba(0,0,0,0.6)',
               }}
