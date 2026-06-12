@@ -12,8 +12,13 @@ Deployed on Netlify free tier at chiragch.com.
 - **Deployment:** Netlify free tier (static site, no SSR)
 
 ## Key Decisions & Preferences
+- Design: "Terminal Engineer" theme (June 2026 redesign). Dark green-on-black terminal aesthetic, JetBrains Mono, every section heading is a shell command plus a large plain-English title.
 - Single long-scroll page — no React Router, no fake page state switching
 - Smooth anchor navigation with scroll-spy for active nav highlighting
+- Hero contains a live interactive terminal: visitors type or click commands (help, projects, resume, ask <question>, etc.). `ask` routes to the Groq-backed `/api/ask` Netlify function (`netlify/functions/ask.js`).
+- AskPanel (floating AI chat bubble) uses the same `/api/ask` endpoint
+- Theme tokens live in `@theme` in `src/styles/index.css` (term/panel/deep/line/neon/mint/amber/fg/fg-soft/fg-dim). Use those utilities, not raw hex in components.
+- Contrast rule: body copy uses fg-soft or brighter; fg-dim is for decorative comments only
 - EmailJS integration is skipped — contact section uses mailto link + social links only
 - No `@react-pdf/renderer` or `react-pdf` — resume is a static PDF in `public/`
 - No axios — was only used for raw EmailJS HTTP calls which are now removed
@@ -24,12 +29,15 @@ src/
   main.jsx              # Vite entry
   App.jsx               # Layout shell only
   components/
+    AskPanel.jsx        # Floating AI chat (Groq via /api/ask)
     layout/             # Header, Footer
-    sections/           # One file per page section
-    ui/                 # Reusable primitives (Button, SectionHeading, etc.)
+    sections/           # One file per page section (Hero holds the interactive terminal)
+    ui/                 # Backdrop, TerminalWindow, SectionHeading
   data/                 # Content data files (do not add logic here)
   utils/                # Hooks and helpers
-  styles/               # index.css with Tailwind directives + CSS vars only
+  styles/               # index.css with Tailwind @theme tokens + keyframes only
+netlify/
+  functions/ask.js      # Groq-backed Q&A endpoint, proxied as /api/ask
 public/
   chirag_1.jpg          # Profile photo
   Chirag_Resume.pdf     # Resume (linked directly, not rendered in-app)

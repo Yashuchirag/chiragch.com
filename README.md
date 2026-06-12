@@ -61,7 +61,7 @@ Launches the test runner in interactive watch mode.
 * **Phone:** +1 (720) 205-7734
 * **Location:** San Jose, California
 * **GitHub:** [Yashuchirag](https://github.com/Yashuchirag)
-* **LinkedIn:** [Chirag Chandrashekar](https://www.linkedin.com/in/chirag-chandrashe-15b965103/)
+* **LinkedIn:** [Chirag Chandrashekar](https://www.linkedin.com/in/chirag-ch/)
 
 ---
 
