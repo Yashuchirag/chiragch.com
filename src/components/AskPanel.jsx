@@ -24,7 +24,7 @@ function FormattedAnswer({ text }) {
           const parts = str.split(/\*\*(.*?)\*\*/g)
           return parts.map((part, j) =>
             j % 2 === 1
-              ? <strong key={j} style={{ color: '#e2e8f0', fontWeight: 600 }}>{part}</strong>
+              ? <strong key={j} style={{ color: '#ECF2E8', fontWeight: 600 }}>{part}</strong>
               : part
           )
         }
@@ -38,7 +38,7 @@ function FormattedAnswer({ text }) {
                 width: 5, height: 5, borderRadius: '50%',
                 background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
               }} />
-              <span style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65 }}>
+              <span style={{ fontSize: 13, color: '#B2C0AC', lineHeight: 1.65 }}>
                 {parseBold(content)}
               </span>
             </div>
@@ -46,7 +46,7 @@ function FormattedAnswer({ text }) {
         }
 
         return (
-          <p key={i} style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, margin: 0 }}>
+          <p key={i} style={{ fontSize: 13, color: '#B2C0AC', lineHeight: 1.65, margin: 0 }}>
             {parseBold(trimmed)}
           </p>
         )
@@ -152,7 +152,7 @@ export default function AskPanel() {
               right: 0,
               width: 'min(380px, calc(100vw - 40px))',
               borderRadius: 18,
-              background: 'rgba(7, 7, 20, 0.92)',
+              background: 'rgba(11, 15, 12, 0.94)',
               backdropFilter: 'blur(20px)',
               border: '1px solid rgba(251,191,36,0.2)',
               boxShadow: '0 0 40px rgba(251,191,36,0.08), 0 24px 60px rgba(0,0,0,0.7)',
@@ -177,7 +177,7 @@ export default function AskPanel() {
                 </div>
                 <div>
                   <p style={{ fontSize: 13, fontWeight: 700, color: '#fff', margin: 0 }}>Ask about Chirag</p>
-                  <p style={{ fontSize: 10, color: '#64748b', margin: 0, fontFamily: "'JetBrains Mono', monospace" }}>
+                  <p style={{ fontSize: 10, color: '#84937F', margin: 0, fontFamily: "'JetBrains Mono', monospace" }}>
                     Powered by Llama 3 · Groq
                   </p>
                 </div>
@@ -186,11 +186,11 @@ export default function AskPanel() {
                 onClick={handleClose}
                 style={{
                   background: 'none', border: 'none', cursor: 'pointer',
-                  color: '#475569', padding: 4, display: 'flex',
+                  color: '#5C6E58', padding: 4, display: 'flex',
                   borderRadius: 6, transition: 'color 0.15s',
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#94a3b8'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#475569'}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#B2C0AC'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#5C6E58'}
               >
                 <FaTimes size={14} />
               </button>
@@ -204,7 +204,7 @@ export default function AskPanel() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <p style={{ fontSize: 13, color: '#64748b', marginBottom: 14, lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 13, color: '#84937F', marginBottom: 14, lineHeight: 1.6 }}>
                     Ask anything about Chirag's experience, skills, or projects.
                   </p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
@@ -294,13 +294,13 @@ export default function AskPanel() {
                   <button
                     onClick={() => { setAnswer(null); setError(null); setTimeout(() => inputRef.current?.focus(), 50) }}
                     style={{
-                      fontSize: 11, color: '#64748b', background: 'none',
+                      fontSize: 11, color: '#84937F', background: 'none',
                       border: 'none', cursor: 'pointer', padding: '0 0 16px',
                       fontFamily: "'JetBrains Mono', monospace",
                       transition: 'color 0.15s',
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.color = '#fbbf24'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#84937F'}
                   >
                     ← Ask another question
                   </button>
@@ -328,7 +328,7 @@ export default function AskPanel() {
                 style={{
                   flex: 1, background: 'rgba(255,255,255,0.05)',
                   border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10,
-                  padding: '9px 12px', fontSize: 13, color: '#e2e8f0',
+                  padding: '9px 12px', fontSize: 13, color: '#ECF2E8',
                   outline: 'none', fontFamily: 'inherit',
                   transition: 'border-color 0.15s',
                 }}
@@ -345,7 +345,7 @@ export default function AskPanel() {
                   background: question.trim() && !loading
                     ? 'linear-gradient(135deg, #fbbf24, #d97706)'
                     : 'rgba(255,255,255,0.06)',
-                  color: question.trim() && !loading ? '#000' : '#475569',
+                  color: question.trim() && !loading ? '#000' : '#5C6E58',
                   cursor: question.trim() && !loading ? 'pointer' : 'default',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0, transition: 'background 0.2s, color 0.2s',
@@ -366,7 +366,7 @@ export default function AskPanel() {
         style={{
           width: 48, height: 48, borderRadius: '50%', border: 'none',
           background: open
-            ? 'rgba(30,30,50,0.95)'
+            ? 'rgba(16, 22, 15, 0.97)'
             : 'linear-gradient(135deg, #fbbf24, #d97706)',
           color: open ? '#fbbf24' : '#000',
           cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',

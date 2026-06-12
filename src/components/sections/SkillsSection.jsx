@@ -3,63 +3,42 @@ import { motion } from 'framer-motion'
 import SectionHeading from '../ui/SectionHeading.jsx'
 import { skillsData } from '../../data/Skills.js'
 
-const categoryIcons = {
-  Frontend: '🎨',
-  Backend: '⚙️',
-  'Database & Tools': '🗄️',
-  'Business Skills': '📊',
-}
+const dirName = (category) =>
+  category.toLowerCase().replace(/\s*&\s*/g, '_').replace(/\s+/g, '_') + '/'
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="relative z-10 py-32">
-      <div className="max-w-5xl mx-auto px-6">
-        <SectionHeading label="Skills" sub="What I work with" />
+    <section id="skills" className="py-24 md:py-32">
+      <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
+        <SectionHeading command="ls -la ~/skills/" note="04 · my toolkit" title="Skills" />
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {skillsData.map((category, i) => (
-            <motion.div
-              key={category.category}
-              className="glass rounded-2xl p-7"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <span className="text-xl">{categoryIcons[category.category] || '💡'}</span>
-                <h3 className="text-base font-semibold" style={{ color: '#f1f5f9' }}>
-                  {category.category}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {category.tags.map((tag, j) => (
-                  <motion.span
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-xl border border-line bg-panel p-7 transition-colors duration-300 hover:border-neon/35 md:p-10"
+        >
+          {skillsData.map(({ category, tags }, i) => (
+            <div key={category} className={i > 0 ? 'mt-8' : ''}>
+              <p className="mb-3 text-sm md:text-[15px]">
+                <span className="text-fg-dim">drwxr-xr-x&nbsp;&nbsp;</span>
+                <span className="font-bold text-neon">{dirName(category)}</span>
+                <span className="text-fg-dim"> # {category}</span>
+              </p>
+              <div className="flex flex-wrap gap-2.5 pl-1 md:pl-6">
+                {tags.map((tag) => (
+                  <span
                     key={tag}
-                    className="inline-block px-3 py-1.5 text-sm rounded-lg font-mono cursor-default transition-all duration-200"
-                    style={{
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      color: '#94a3b8',
-                    }}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 + j * 0.03 }}
-                    whileHover={{
-                      backgroundColor: 'rgba(129,140,248,0.12)',
-                      borderColor: 'rgba(129,140,248,0.3)',
-                      color: '#818cf8',
-                    }}
+                    className="cursor-default rounded-md border border-line px-3.5 py-1.5 text-[13px] text-fg-soft transition-colors duration-200 hover:border-neon/50 hover:text-neon md:text-sm"
                   >
                     {tag}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

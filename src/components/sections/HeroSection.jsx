@@ -1,210 +1,351 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaFilePdf } from 'react-icons/fa'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
+import TerminalWindow from '../ui/TerminalWindow.jsx'
 
-const titles = ['Full Stack Engineer', 'Problem Solver', 'Tech Enthusiast']
+const BOOT_CMD = 'whoami --verbose'
+const ROLES = ['Full Stack Engineer', 'Problem Solver', 'Tech Enthusiast']
+const SECTION_IDS = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'contact']
 
-function TypewriterText({ text }) {
+const LINKS = {
+  github: 'https://github.com/Yashuchirag',
+  linkedin: 'https://www.linkedin.com/in/chirag-ch',
+  leetcode: 'https://leetcode.com/u/YashuChirag/',
+}
+
+const CHIPS = [
+  { cmd: 'help', hint: 'See everything this terminal can do' },
+  { cmd: 'projects', hint: 'Jump to the things I have built' },
+  { cmd: 'experience', hint: 'Jump to my work history' },
+  { cmd: 'resume', hint: 'Open my resume PDF in a new tab' },
+  { cmd: 'contact', hint: 'Jump to my contact details' },
+  { cmd: 'ask what is his tech stack?', hint: 'Ask the AI assistant anything about me' },
+]
+
+const HELP_TEXT = [
+  ['help', 'show this list'],
+  ['about / experience / projects / skills / education / contact', 'scroll to that section'],
+  ['resume', 'open my resume PDF'],
+  ['github / linkedin / leetcode', 'open my profiles'],
+  ['ask <question>', 'ask the AI assistant about me'],
+  ['clear', 'wipe the screen'],
+]
+
+let nextId = 0
+const entry = (type, text) => ({ id: ++nextId, type, text })
+
+function prefersReducedMotion() {
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+function RoleRotator() {
+  const [index, setIndex] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % ROLES.length), 3000)
+    return () => clearInterval(id)
+  }, [])
   return (
     <AnimatePresence mode="wait">
       <motion.span
-        key={text}
+        key={ROLES[index]}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.35 }}
-        style={{
-          background: 'linear-gradient(135deg, #818cf8, #34d399)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          display: 'inline-block',
-        }}
+        transition={{ duration: 0.3 }}
+        className="inline-block"
       >
-        {text}
+        {ROLES[index]}
       </motion.span>
     </AnimatePresence>
   )
 }
 
-const socialLinks = [
-  { icon: <FaGithub size={20} />, href: 'https://github.com/Yashuchirag', label: 'GitHub' },
-  { icon: <FaLinkedin size={20} />, href: 'https://www.linkedin.com/in/chirag-chandrashe-15b965103/', label: 'LinkedIn' },
-  { icon: <SiLeetcode size={20} />, href: 'https://leetcode.com/u/YashuChirag/', label: 'LeetCode' },
-]
+function HistoryLine({ item }) {
+  if (item.type === 'cmd') {
+    return (
+      <p className="break-words">
+        <span className="font-bold text-neon">guest@chiragch.com:~$ </span>
+        <span className="text-fg">{item.text}</span>
+      </p>
+    )
+  }
+  if (item.type === 'loading') {
+    return <p className="animate-pulse text-amber">querying llama-3 via groq…</p>
+  }
+  const colors = { ok: 'text-neon', err: 'text-[#FCA5A5]', out: 'text-fg-soft' }
+  return <p className={`whitespace-pre-wrap break-words ${colors[item.type] || 'text-fg-soft'}`}>{item.text}</p>
+}
 
 export default function HeroSection() {
-  const [titleIndex, setTitleIndex] = useState(0)
+  // phases: typing -> output -> ready
+  const [phase, setPhase] = useState('typing')
+  const [typed, setTyped] = useState('')
+  const [history, setHistory] = useState([])
+  const [input, setInput] = useState('')
+  const inputRef = useRef(null)
+  const scrollRef = useRef(null)
 
   useEffect(() => {
-    const id = setInterval(() => setTitleIndex((i) => (i + 1) % titles.length), 3000)
-    return () => clearInterval(id)
+    if (prefersReducedMotion()) {
+      setTyped(BOOT_CMD)
+      setPhase('ready')
+      return
+    }
+    let i = 0
+    const t = setInterval(() => {
+      i += 1
+      setTyped(BOOT_CMD.slice(0, i))
+      if (i >= BOOT_CMD.length) {
+        clearInterval(t)
+        setTimeout(() => setPhase('output'), 350)
+        setTimeout(() => setPhase('ready'), 1100)
+      }
+    }, 65)
+    return () => clearInterval(t)
   }, [])
 
+  useEffect(() => {
+    const el = scrollRef.current
+    if (el) el.scrollTop = el.scrollHeight
+  }, [history, phase])
+
+  const push = useCallback((...items) => {
+    setHistory((h) => [...h, ...items].slice(-80))
+  }, [])
+
+  const goTo = useCallback((id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
+  }, [])
+
+  const askAI = useCallback(async (question) => {
+    const loading = entry('loading', '')
+    setHistory((h) => [...h, loading])
+    try {
+      const res = await fetch('/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      })
+      const data = await res.json()
+      const ok = res.ok && !data.error
+      setHistory((h) =>
+        h.map((item) =>
+          item.id === loading.id
+            ? { ...item, type: ok ? 'out' : 'err', text: ok ? data.answer : data.error || 'Something went wrong. Please try again.' }
+            : item
+        )
+      )
+    } catch {
+      setHistory((h) =>
+        h.map((item) => (item.id === loading.id ? { ...item, type: 'err', text: 'Could not reach the server. Please try again.' } : item))
+      )
+    }
+  }, [])
+
+  const run = useCallback(
+    (raw) => {
+      const text = raw.trim()
+      if (!text) return
+      push(entry('cmd', text))
+
+      const lower = text.toLowerCase()
+      // strip shell-isms so "cd projects", "./contact.sh" or "cat about.md" all work
+      const word = lower
+        .replace(/^(cd|open|goto|cat|run)\s+/, '')
+        .replace(/^\.\//, '')
+        .replace(/\.(md|sh|pdf|txt)$/, '')
+        .replace(/\s+--?\S+/g, '')
+        .trim()
+
+      if (lower === 'clear') {
+        setHistory([])
+        return
+      }
+      if (lower === 'help' || lower === '?') {
+        push(entry('out', 'Available commands:'))
+        HELP_TEXT.forEach(([cmd, desc]) => push(entry('out', `  ${cmd}  →  ${desc}`)))
+        push(entry('out', 'Not a terminal person? The menu at the top works too.'))
+        return
+      }
+      if (word === 'whoami' || lower === 'whoami --verbose') {
+        push(entry('out', 'Chirag Chandrashekar · Full Stack Engineer · San Jose, CA'))
+        push(entry('ok', '[OK] Open to work · Software Developer @ Glenysys'))
+        return
+      }
+      if (SECTION_IDS.includes(word)) {
+        push(entry('ok', `→ opening #${word}`))
+        goTo(word)
+        return
+      }
+      if (word === 'resume' || word === 'cv') {
+        push(entry('ok', '→ opening Chirag_Resume.pdf in a new tab'))
+        window.open('/Chirag_Resume.pdf', '_blank', 'noopener')
+        return
+      }
+      if (LINKS[word]) {
+        push(entry('ok', `→ opening ${word} profile in a new tab`))
+        window.open(LINKS[word], '_blank', 'noopener')
+        return
+      }
+      if (word === 'email' || word === 'mail') {
+        push(entry('ok', '→ chiragchandrashekar@gmail.com'))
+        window.location.href = 'mailto:chiragchandrashekar@gmail.com'
+        return
+      }
+      if (lower === 'sudo hire-chirag' || lower === 'sudo hire chirag') {
+        push(entry('ok', '[OK] Excellent decision. Routing you to the contact section…'))
+        goTo('contact')
+        return
+      }
+      if (lower.startsWith('ask ')) {
+        askAI(text.slice(4).trim())
+        return
+      }
+      // anything that reads like a question goes to the AI assistant
+      if (lower.endsWith('?') || lower.split(/\s+/).length > 2) {
+        push(entry('out', 'Interpreting that as a question for the AI assistant…'))
+        askAI(text)
+        return
+      }
+      push(entry('err', `command not found: ${text}`))
+      push(entry('out', `Type "help" to see what works, or "ask ${text}" to ask the AI.`))
+    },
+    [push, goTo, askAI]
+  )
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    run(input)
+    setInput('')
+  }
+
   return (
-    <section id="home" className="relative z-10 min-h-screen flex items-center">
-      <div className="w-full max-w-5xl mx-auto px-6 py-32">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
-
-          {/* Text content */}
-          <div className="flex-1 text-center md:text-left">
-            <motion.p
-              className="font-mono text-sm mb-3 tracking-widest uppercase"
-              style={{ color: '#818cf8' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+    <section id="home" className="flex min-h-screen items-center pb-16 pt-28">
+      <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <TerminalWindow title="chirag@bengaluru — zsh — interactive">
+            <div
+              className="p-6 text-[15px] md:p-10 md:text-base"
+              onClick={() => phase === 'ready' && inputRef.current?.focus()}
             >
-              Hello, I'm
-            </motion.p>
+              {/* boot command */}
+              <p>
+                <span className="font-bold text-neon">$ </span>
+                <span className="text-fg">{typed}</span>
+                {phase === 'typing' && <span className="caret-blink ml-0.5 inline-block h-[1.1em] w-[9px] translate-y-[3px] bg-neon" />}
+              </p>
 
-            <motion.h1
-              className="text-5xl md:text-6xl font-extrabold tracking-tight mb-3 leading-tight"
-              style={{ color: '#f1f5f9', letterSpacing: '-0.03em' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Chirag<br />Chandrashekar
-            </motion.h1>
+              {/* whoami output */}
+              {phase !== 'typing' && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+                  <h1 className="mb-2 mt-5 text-4xl font-extrabold leading-tight tracking-tight text-fg md:text-6xl lg:text-7xl">
+                    Chirag{' '}
+                    <span className="text-neon" style={{ textShadow: '0 0 28px rgba(74,222,128,0.45)' }}>
+                      Chandrashekar
+                    </span>
+                  </h1>
+                  <p className="mb-5 min-h-[2rem] text-lg font-semibold text-amber md:text-2xl">
+                    <RoleRotator />
+                  </p>
+                  <p className="max-w-3xl text-fg-soft">
+                    Passionate software engineer specializing in building exceptional digital experiences at the
+                    intersection of technology and user-centered design.
+                  </p>
 
-            <motion.div
-              className="text-xl md:text-2xl font-semibold mb-6"
-              style={{ minHeight: '2rem' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <TypewriterText text={titles[titleIndex]} />
-            </motion.div>
+                  <p className="mt-6">
+                    <span className="font-bold text-neon">$ </span>
+                    <span className="text-fg">status --check</span>
+                  </p>
+                  <p className="text-fg-soft">
+                    [<span className="font-bold text-neon">OK</span>] Open to work ·{' '}
+                    <span className="font-semibold text-fg">Software Developer @ Glenysys</span> · San Jose, CA
+                  </p>
 
-            <motion.p
-              className="text-base leading-relaxed mb-8 max-w-lg mx-auto md:mx-0"
-              style={{ color: '#94a3b8' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              Passionate software engineer specializing in building exceptional digital
-              experiences at the intersection of technology and user-centered design.
-            </motion.p>
+                  <div className="mt-5 flex items-center gap-5">
+                    <a href={LINKS.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-fg-soft transition-colors hover:text-neon">
+                      <FaGithub size={22} />
+                    </a>
+                    <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-fg-soft transition-colors hover:text-neon">
+                      <FaLinkedin size={22} />
+                    </a>
+                    <a href={LINKS.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode" className="text-fg-soft transition-colors hover:text-neon">
+                      <SiLeetcode size={22} />
+                    </a>
+                  </div>
 
-            <motion.div
-              className="flex flex-wrap gap-3 justify-center md:justify-start mb-8"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <motion.a
-                href="/Chirag_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm"
-                style={{
-                  background: 'linear-gradient(135deg, #818cf8, #6366f1)',
-                  color: '#fff',
-                  boxShadow: '0 4px 18px rgba(129, 140, 248, 0.35)',
-                }}
-                whileHover={{ scale: 1.03, boxShadow: '0 6px 28px rgba(129, 140, 248, 0.5)' }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <FaFilePdf /> View Resume
-              </motion.a>
-              <motion.a
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm"
-                style={{ border: '1px solid rgba(129, 140, 248, 0.4)', color: '#818cf8' }}
-                whileHover={{ scale: 1.03, background: 'rgba(129, 140, 248, 0.1)' }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Get In Touch
-              </motion.a>
-            </motion.div>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <a
+                      href="/Chirag_Resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-lg bg-neon px-6 py-3 text-sm font-bold text-[#06100A] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(74,222,128,0.45)] md:text-[15px]"
+                    >
+                      View Resume
+                    </a>
+                    <a
+                      href="#contact"
+                      className="rounded-lg border border-line px-6 py-3 text-sm font-semibold text-neon transition-colors duration-200 hover:border-neon hover:bg-neon/10 md:text-[15px]"
+                    >
+                      Get in Touch
+                    </a>
+                  </div>
+                </motion.div>
+              )}
 
-            <motion.div
-              className="flex gap-5 justify-center md:justify-start"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.65 }}
-            >
-              {socialLinks.map(({ icon, href, label }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  style={{ color: '#64748b' }}
-                  whileHover={{ color: '#818cf8', y: -3 }}
-                  transition={{ duration: 0.15 }}
+              {/* interactive prompt */}
+              {phase === 'ready' && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="mt-9 border-t border-dashed border-line pt-6"
                 >
-                  {icon}
-                </motion.a>
-              ))}
-            </motion.div>
-          </div>
+                  <p className="text-sm text-fg-dim md:text-[15px]">
+                    # This terminal is live. Click a shortcut below or type a command, and it will take you around the
+                    site or answer questions about me. New to terminals? Start with "help", or just scroll.
+                  </p>
 
-          {/* Profile image */}
-          <motion.div
-            className="flex-shrink-0 flex justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="relative">
-              <div
-                className="rounded-full overflow-hidden"
-                style={{
-                  width: 240,
-                  height: 240,
-                  border: '2px solid transparent',
-                  background: 'linear-gradient(#070711, #070711) padding-box, linear-gradient(135deg, #7c3aed, #2563eb, #0891b2) border-box',
-                  boxShadow: '0 0 60px rgba(124, 58, 237, 0.25)',
-                }}
-              >
-                <img
-                  src="/chirag_1.jpg"
-                  alt="Chirag Chandrashekar"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-              <motion.div
-                className="absolute -bottom-2 -right-2 px-3 py-1.5 rounded-xl text-xs font-mono"
-                style={{
-                  background: 'rgba(7,7,17,0.9)',
-                  border: '1px solid rgba(129,140,248,0.3)',
-                  color: '#818cf8',
-                  backdropFilter: 'blur(10px)',
-                  whiteSpace: 'nowrap',
-                }}
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                Open to work
-              </motion.div>
+                  <div ref={scrollRef} className="mt-4 max-h-72 space-y-1.5 overflow-y-auto pr-2">
+                    {history.map((item) => (
+                      <HistoryLine key={item.id} item={item} />
+                    ))}
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="mt-3 flex items-center gap-2">
+                    <label htmlFor="hero-terminal-input" className="shrink-0 font-bold text-neon">
+                      guest@chiragch.com:~$
+                    </label>
+                    <input
+                      id="hero-terminal-input"
+                      ref={inputRef}
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder='type a command… (try "help")'
+                      autoComplete="off"
+                      spellCheck="false"
+                      maxLength={300}
+                      className="min-w-0 flex-1 bg-transparent text-fg caret-neon outline-none placeholder:text-fg-dim"
+                    />
+                  </form>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {CHIPS.map(({ cmd, hint }) => (
+                      <button
+                        key={cmd}
+                        type="button"
+                        title={hint}
+                        onClick={() => run(cmd)}
+                        className="rounded-md border border-line px-3.5 py-2 text-[13px] text-mint transition-all duration-200 hover:border-neon/60 hover:bg-neon/10 md:text-sm"
+                      >
+                        {cmd}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
             </div>
-          </motion.div>
-        </div>
-
-        {/* Scroll cue */}
-        <motion.div
-          className="flex justify-center mt-20"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <button
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-            className="flex flex-col items-center gap-1.5"
-            style={{ color: '#334155', background: 'none', border: 'none', cursor: 'pointer' }}
-            aria-label="Scroll down"
-          >
-            <span className="text-xs font-mono tracking-widest">scroll</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 5v14M5 12l7 7 7-7" />
-            </svg>
-          </button>
+          </TerminalWindow>
         </motion.div>
       </div>
     </section>

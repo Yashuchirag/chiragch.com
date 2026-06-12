@@ -1,198 +1,84 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState } from 'react'
+import { FaBars, FaTimes } from 'react-icons/fa'
 import useScrollSpy from '../../utils/useScrollSpy.js'
 
-const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Education', href: '#education' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+const LINKS = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'education', label: 'Education' },
+  { id: 'contact', label: 'Contact' },
 ]
-
-const sectionIds = navLinks.map((l) => l.href.slice(1))
+const SECTION_IDS = ['home', ...LINKS.map((l) => l.id)]
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const activeId = useScrollSpy(sectionIds)
+  const [open, setOpen] = useState(false)
+  const active = useScrollSpy(SECTION_IDS, 90)
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') setIsMenuOpen(false) }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [isMenuOpen])
-
-  const handleNavClick = (href) => {
-    setIsMenuOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
+  const linkClass = (id) =>
+    `rounded-md px-3.5 py-2 text-sm transition-colors duration-200 ${
+      active === id ? 'bg-neon/10 text-neon' : 'text-fg-soft hover:bg-neon/5 hover:text-neon'
+    }`
 
   return (
-    <>
-      <motion.header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{
-          background: scrolled ? 'rgba(7, 7, 17, 0.85)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
-        }}
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => { e.preventDefault(); handleNavClick('#home') }}
-            className="font-mono text-lg font-semibold"
-            style={{ color: '#818cf8' }}
-          >
-            CC<span style={{ color: '#f1f5f9' }}>.</span>
-          </a>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-term/90 backdrop-blur-md">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 md:px-8">
+        <a href="#home" className="text-sm font-bold text-neon md:text-[15px]" onClick={() => setOpen(false)}>
+          chirag@chiragch.com:~$<span className="caret-blink">▊</span>
+        </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => {
-              const isActive = activeId === link.href.slice(1)
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-                  className="text-sm font-medium transition-colors duration-200 relative group"
-                  style={{ color: isActive ? '#818cf8' : '#94a3b8' }}
-                >
-                  {link.label}
-                  <span
-                    className="absolute -bottom-1 left-0 h-px transition-all duration-200"
-                    style={{
-                      width: isActive ? '100%' : '0%',
-                      background: '#818cf8',
-                    }}
-                  />
-                </a>
-              )
-            })}
-            <a
-              href="/Chirag_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-mono px-4 py-2 rounded-lg transition-all duration-200"
-              style={{
-                border: '1px solid rgba(129, 140, 248, 0.5)',
-                color: '#818cf8',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(129, 140, 248, 0.1)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent'
-              }}
-            >
-              Resume
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+          {LINKS.map(({ id, label }) => (
+            <a key={id} href={`#${id}`} className={linkClass(id)} aria-current={active === id ? 'true' : undefined}>
+              {label}
             </a>
-          </nav>
-
-          {/* Hamburger */}
-          <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg transition-colors"
-            onClick={() => setIsMenuOpen((p) => !p)}
-            aria-label="Toggle menu"
-            style={{ color: '#f1f5f9' }}
+          ))}
+          <a
+            href="/Chirag_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-3 rounded-md border border-neon/40 px-4 py-2 text-sm font-semibold text-neon transition-colors duration-200 hover:bg-neon/10"
           >
-            <motion.span
-              className="block h-0.5 w-6 rounded-full"
-              style={{ background: '#f1f5f9', transformOrigin: 'center' }}
-              animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.2 }}
-            />
-            <motion.span
-              className="block h-0.5 w-6 rounded-full"
-              style={{ background: '#f1f5f9' }}
-              animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.2 }}
-            />
-            <motion.span
-              className="block h-0.5 w-6 rounded-full"
-              style={{ background: '#f1f5f9', transformOrigin: 'center' }}
-              animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.2 }}
-            />
-          </button>
-        </div>
-      </motion.header>
+            Resume
+          </a>
+        </nav>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {/* Backdrop */}
-            <div
-              className="absolute inset-0"
-              style={{ background: 'rgba(7, 7, 17, 0.95)', backdropFilter: 'blur(20px)' }}
-              onClick={() => setIsMenuOpen(false)}
-            />
-            {/* Links */}
-            <motion.nav
-              className="absolute top-20 left-0 right-0 flex flex-col items-center gap-6 py-12"
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.25, delay: 0.05 }}
+        <button
+          className="rounded-md p-2 text-fg-soft transition-colors hover:text-neon md:hidden"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+        >
+          {open ? <FaTimes size={20} /> : <FaBars size={20} />}
+        </button>
+      </div>
+
+      {open && (
+        <nav className="border-t border-line bg-term/95 px-6 pb-5 pt-2 backdrop-blur-md md:hidden" aria-label="Mobile navigation">
+          {LINKS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={() => setOpen(false)}
+              className={`block rounded-md px-3 py-3.5 text-base ${
+                active === id ? 'bg-neon/10 text-neon' : 'text-fg-soft hover:text-neon'
+              }`}
             >
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-                  className="text-2xl font-semibold transition-colors"
-                  style={{ color: activeId === link.href.slice(1) ? '#818cf8' : '#f1f5f9' }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 + i * 0.05 }}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-              <motion.a
-                href="/Chirag_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 text-lg font-mono px-6 py-3 rounded-xl"
-                style={{ border: '1px solid rgba(129, 140, 248, 0.5)', color: '#818cf8' }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                Resume
-              </motion.a>
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+              {label}
+            </a>
+          ))}
+          <a
+            href="/Chirag_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="mt-2 block rounded-md border border-neon/40 px-3 py-3 text-center text-base font-semibold text-neon"
+          >
+            View Resume
+          </a>
+        </nav>
+      )}
+    </header>
   )
 }

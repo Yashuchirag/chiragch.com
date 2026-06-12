@@ -1,28 +1,77 @@
 @import "tailwindcss";
-@import "./planets.css";
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: #00000f;
-  color: #f1f5f9;
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+@theme {
+  --color-term: #0B0F0C;
+  --color-panel: #11160F;
+  --color-deep: #0C110B;
+  --color-line: #26331F;
+  --color-neon: #4ADE80;
+  --color-mint: #86EFAC;
+  --color-amber: #FBBF24;
+  --color-fg: #ECF2E8;
+  --color-fg-soft: #B2C0AC;
+  --color-fg-dim: #84937F;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+/*
+ * Everything element-level lives in @layer base so Tailwind utility classes
+ * (which live in @layer utilities) can always override it. Never add
+ * unlayered universal resets here: unlayered CSS beats ALL layered CSS,
+ * which silently disables utilities like mx-auto, px-*, and py-*.
+ * Tailwind's preflight already resets margins, paddings, and box-sizing.
+ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scale the whole type ramp up on wide screens */
+  @media (min-width: 1280px) {
+    html { font-size: 17px; }
+  }
+  @media (min-width: 1700px) {
+    html { font-size: 18px; }
+  }
+
+  body {
+    background: var(--color-term);
+    color: var(--color-fg);
+    font-family: var(--font-mono);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--color-neon); color: #06100A; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--color-term); }
+  ::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.25); border-radius: 3px; }
+
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
 }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #00000f; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
-::selection { background: rgba(251,191,36,0.3); color: #fff; }
+@utility caret-blink {
+  animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(70px, 50px) scale(1.15); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1.08); }
+  50% { transform: translate(-80px, -60px) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .caret-blink { animation: none; }
+  .motion-bg { animation: none !important; }
+}
