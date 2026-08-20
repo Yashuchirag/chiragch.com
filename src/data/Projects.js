@@ -15,6 +15,32 @@ export const Projects = [
     link: 'https://github.com/Yashuchirag/badminton-analysis'
   },
   {
+    title: 'Volunteer Management System',
+    company: 'University of Colorado Boulder',
+    period: 'Jan 2024 - May 2024',
+    description: 'Developed a Docker-containerized full-stack application optimizing volunteer management through automated data collection, secure authentication, scalable SQL databases, and real-time analytics.',
+    responsibilities: [
+      'Built a full-stack web application using React, Flask, and PostgreSQL with user authentication, event registration, and real-time participation tracking. Deployed on Heroku and containerized with Docker for consistent development and deployment environments.',
+      'Automated web scraping of volunteer events using Python and BeautifulSoup every four hours, ensuring accurate, up-to-date scheduling and improved operational efficiency.',
+      'Designed a SQL-based data analysis pipeline to evaluate volunteer participation and event trends, optimize database operations, and support data-driven strategic planning.'
+    ],
+    skills: ['React', 'Flask', 'PostgreSQL', 'Heroku', 'Python', 'BeautifulSoup', 'SQL', 'CORS', 'Docker'],
+    link: 'https://github.com/Yashuchirag/Volunteer-Management'
+  },
+  {
+    title: 'Team Pressing Project: Premier League Analysis',
+    company: 'University of Colorado Boulder',
+    period: 'Jan 2023 - April 2023',
+    description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
+    responsibilities: [
+      'Built an end-to-end prediction system for Premier League team performance, engineering a FastAPI backend that serves six regression models (Linear, ElasticNet, Poisson, SVR, Decision Tree, Random Forest) trained on 20 seasons of scraped match and injury data.',
+      'Designed a data pipeline that scrapes and merges match statistics from fbref.com with injury records from transfermarkt.co.uk, then compresses roughly 40 pressing and possession features with PCA before feeding them into the trained models.',
+      'Shipped a React frontend that lets users pick a team, season, and model to compare predicted versus actual outcomes for injuries and goals per game, alongside each model\'s RMSE, R², and explained variance.'
+    ],
+    skills: ['Python', 'React', 'FastAPI', 'Machine Learning', 'Data Analysis', 'Data Visualization', 'PCA', 'ElasticNet Regressor', 'Linear Regression', 'Matplotlib', 'Seaborn', 'Pandas', 'Scikit-learn'],
+    link: 'https://github.com/Yashuchirag/team_pressing_project'
+  },
+  {
     title: 'Netflix Clone — MERN Full-Stack Streaming Platform',
     company: 'Personal Project / Chirag Chandrashekar',
     period: 'July 2025 - Present',
@@ -46,32 +72,6 @@ export const Projects = [
     ],
     skills: ['Next.js 14', 'React 18', 'JavaScript', 'Node.js', 'CSS', 'Responsive Design', 'Markdown', 'PWA', 'File Upload', 'Accessibility', 'Vercel/Netlify'],
     link: 'https://github.com/Yashuchirag/InformativeAIApp'
-  },
-  {
-    title: 'Volunteer Management System',
-    company: 'University of Colorado Boulder',
-    period: 'Jan 2024 - May 2024',
-    description: 'Developed a Docker-containerized full-stack application optimizing volunteer management through automated data collection, secure authentication, scalable SQL databases, and real-time analytics.',
-    responsibilities: [
-      'Built a full-stack web application using React, Flask, and PostgreSQL with user authentication, event registration, and real-time participation tracking. Deployed on Heroku and containerized with Docker for consistent development and deployment environments.',
-      'Automated web scraping of volunteer events using Python and BeautifulSoup every four hours, ensuring accurate, up-to-date scheduling and improved operational efficiency.',
-      'Designed a SQL-based data analysis pipeline to evaluate volunteer participation and event trends, optimize database operations, and support data-driven strategic planning.'
-    ],
-    skills: ['React', 'Flask', 'PostgreSQL', 'Heroku', 'Python', 'BeautifulSoup', 'SQL', 'CORS', 'Docker'],
-    link: 'https://github.com/Yashuchirag/Volunteer-Management'
-  },
-  {
-    title: 'Team Pressing Project: Premier League Analysis',
-    company: 'University of Colorado Boulder',
-    period: 'Jan 2023 - April 2023',
-    description: 'Performed data exploration and visualization on Premier League teams, identifying performance trends and developing PCA-based predictive models for injury and goal forecasting.',
-    responsibilities: [
-      'Analyzed soccer team pressing metrics with Python and Pandas, revealing patterns in defensive intensity and ball recovery strategies through advanced statistics.',
-      'Created interactive visualizations using Matplotlib, Seaborn, and Plotly, including heatmaps and pressure-zone maps to communicate team and player performance insights.',
-      'Developed custom metrics like Pressing Intensity (PPDA) and predictive models using scikit-learn and PCA to assess team effectiveness in match-event data.'
-    ],
-    skills: ['Python', 'Machine Learning', 'Data Analysis', 'Data Visualization', 'PCA', 'ElasticNet Regressor', 'Linear Regression', 'Matplotlib', 'Seaborn', 'Pandas', 'Scikit-learn'],
-    link: 'https://github.com/Yashuchirag/team_pressing_project'
   },
   {
     title: 'Glasso Algorithm Project',

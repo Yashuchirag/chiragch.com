@@ -5,11 +5,12 @@ export const experiences = [
     period: 'Aug 2024 - Present',
     description: 'Designed and deployed scalable, high-quality data solutions for clinical trials using Java, Medidata Rave, and HP ALM, improving data integrity and accelerating project delivery.',
     responsibilities: [
-      'Developed and deployed a scalable WMS using Java, Spring Boot, and PostgreSQL on GCP, improving efficiency by 40%. Implemented automation, microservices, and CI/CD pipelines to enhance scalability and support seamless supply chain integrations.',
-      'Collaborated in building a full-stack Product Management platform using React 18, Vite, Chakra UI, Zustand, and Framer Motion to deliver a responsive UI with dark/light mode, animations, and seamless CRUD operations.',
-      'Engineered and deployed the backend using Node.js, Express 5, MongoDB Atlas, and Mongoose, exposing secure REST APIs with CORS support, implemented environment-based configurations, and deployed services on Render and Netlify for production readiness.'
+      'Architected and deployed a Spring Boot 3 and PostgreSQL warehouse management system on GCP, exposing 20+ REST endpoints across five core domain services with Flyway-managed schema versioning for zero-downtime migrations.',
+      'Designed environment-based configuration separating dev and prod profiles, including tuned HikariCP connection pooling (up to 20 concurrent connections in production) and externalized secrets management for secure, repeatable deployments.',
+      'Built a SKU-level demand forecasting pipeline with lag, rolling, and calendar features and a walk-forward temporal split, benchmarking a linear regression baseline against a tuned XGBoost model (RandomizedSearchCV, 3-fold TimeSeriesSplit) that cut MAPE by 11.14% (35.21% to 31.29%) on an 8-week held-out window.',
+      'Delivered a full-stack application using React and Zustand with real-time data visualization, designing clean APIs and user interfaces that integrate multiple data sources into cohesive workflows.'
     ],
-    skills: ['Java', 'Spring Boot', 'PostgreSQL', 'GCP', 'CI/CD pipeline', 'Microservices', 'React 18', 'Chakra UI', 'Zustand', 'Framer Motion', 'Vite', 'Express 5', 'MongoDB Atlas', 'Mongoose', 'CORS', "REST API's", 'Render', 'Netlify'],
+    skills: ['Java', 'Spring Boot', 'PostgreSQL', 'GCP', 'XGBoost', 'CI/CD pipeline', 'Microservices', 'React 18', 'MongoDB Atlas', 'Mongoose', 'CORS', "REST API's", 'Render', 'Netlify'],
   },  
   {
       role: 'Data Analyst',
