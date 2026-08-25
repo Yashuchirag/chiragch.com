@@ -178,7 +178,7 @@ export default function AskPanel() {
                 <div>
                   <p style={{ fontSize: 13, fontWeight: 700, color: '#fff', margin: 0 }}>Ask about Chirag</p>
                   <p style={{ fontSize: 10, color: '#84937F', margin: 0, fontFamily: "'JetBrains Mono', monospace" }}>
-                    Powered by Llama 3 · Groq
+                    Powered by openai/gpt-oss-120b · Groq
                   </p>
                 </div>
               </div>
